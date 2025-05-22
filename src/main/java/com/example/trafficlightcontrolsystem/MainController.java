@@ -1,4 +1,4 @@
-package com.example.trafficlightcontrolsystem.scenes;
+package com.example.trafficlightcontrolsystem;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

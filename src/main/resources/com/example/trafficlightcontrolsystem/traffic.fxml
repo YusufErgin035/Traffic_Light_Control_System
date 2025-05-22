@@ -2,10 +2,144 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
 
+<AnchorPane fx:id="mainPane" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trafficlightcontrolsystem.TrafficController">
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trafficlightcontrolsystem.scenes.TrafficController">
    <children>
-      <Button layoutX="270.0" layoutY="218.0" mnemonicParsing="false" onAction="#switchToMainPage" text="Go Back" />
+
+      <!-- Arka plan: çimen -->
+      <Rectangle fill="#44aa44" height="700.0" width="1000.0" />
+
+      <!-- Yollar: ortada birleşen yollar -->
+      <Rectangle fill="#555555" height="700.0" layoutX="150.0" width="60" />
+      <Rectangle fill="#555555" height="700.0" layoutX="783.0" width="60" /> <!-- Dikey yol -->
+      <Rectangle fill="#555555" height="60" layoutY="100.0" width="1000.0" /> <!-- Yatay yol -->
+      <Rectangle fill="#555555" height="60" layoutY="524.0" width="1000.0" /> <!-- Alt yatay yol -->
+
+      <!-- Kavşak merkez kareleri -->
+      <Rectangle fill="#888888" height="60" layoutX="150" layoutY="100" width="60" /> <!-- Sol Üst -->
+      <Rectangle fill="#888888" height="60" layoutX="783.0" layoutY="100.0" width="60" /> <!-- Sağ Üst -->
+      <Rectangle fill="#888888" height="60" layoutX="150.0" layoutY="524.0" width="60" /> <!-- Sol Alt -->
+      <Rectangle fill="#888888" height="60" layoutX="783.0" layoutY="524.0" width="60" />
+      <Line endX="180" endY="210" startX="180" startY="170" stroke="white" strokeWidth="3" />
+      <Line endX="180" endY="270" startX="180" startY="230" stroke="white" strokeWidth="3" />
+      <Line endX="180" endY="330" startX="180" startY="290" stroke="white" strokeWidth="3" />
+      <Line endX="180" endY="390" startX="180" startY="350" stroke="white" strokeWidth="3" />
+      <Line endX="180" endY="450" startX="180" startY="410" stroke="white" strokeWidth="3" />
+      <Line endX="180" endY="510" startX="180" startY="470" stroke="white" strokeWidth="3" />
+      <Line endX="150.0" endY="519.0" layoutY="5.0" startX="180" startY="519.0" stroke="white" strokeWidth="2.0" />
+      <Line endX="180" endY="630" startX="180" startY="590" stroke="white" strokeWidth="3" />
+      <Line endX="180" endY="690" startX="180" startY="650" stroke="white" strokeWidth="3" />
+
+      <!-- Dikey yol sağ (x=813 ortası) kesikli çizgiler -->
+      <Line endX="813" endY="150" layoutY="-62.0" startX="813" startY="110" stroke="white" strokeWidth="3" />
+      <Line endX="813" endY="210" startX="813" startY="170" stroke="white" strokeWidth="3" />
+      <Line endX="813" endY="270" startX="813" startY="230" stroke="white" strokeWidth="3" />
+      <Line endX="813" endY="330" startX="813" startY="290" stroke="white" strokeWidth="3" />
+      <Line endX="813" endY="390" startX="813" startY="350" stroke="white" strokeWidth="3" />
+      <Line endX="813" endY="450" startX="813" startY="410" stroke="white" strokeWidth="3" />
+      <Line endX="813" endY="510" startX="813" startY="470" stroke="white" strokeWidth="3" />
+      <Line endX="813" endY="630" startX="813" startY="590" stroke="white" strokeWidth="3" />
+      <Line endX="813" endY="690" startX="813" startY="650" stroke="white" strokeWidth="3" />
+      <Line endX="260" endY="130" startX="220" startY="130" stroke="white" strokeWidth="3" />
+      <Line endX="320" endY="130" startX="280" startY="130" stroke="white" strokeWidth="3" />
+      <Line endX="380" endY="130" startX="340" startY="130" stroke="white" strokeWidth="3" />
+      <Line endX="440" endY="130" startX="400" startY="130" stroke="white" strokeWidth="3" />
+      <Line endX="500" endY="130" startX="460" startY="130" stroke="white" strokeWidth="3" />
+      <Line endX="560" endY="130" startX="520" startY="130" stroke="white" strokeWidth="3" />
+      <Line endX="620" endY="130" startX="580" startY="130" stroke="white" strokeWidth="3" />
+      <Line endX="680" endY="130" startX="640" startY="130" stroke="white" strokeWidth="3" />
+      <Line endX="740" endY="130" startX="700" startY="130" stroke="white" strokeWidth="3" />
+      <Line endX="783.0000610351562" endY="130" startX="760" startY="130" stroke="white" strokeWidth="3" />
+      <Line endX="860" endY="130" layoutX="3.0" startX="843.0000610351562" startY="130" stroke="white" strokeWidth="3" />
+      <Line endX="920" endY="130" startX="880" startY="130" stroke="white" strokeWidth="3" />
+
+      <!-- Yatay yol alt (y=554 ortası) kesikli çizgiler -->
+      <Line endX="200" endY="554" layoutX="-58.0" startX="160" startY="554" stroke="white" strokeWidth="3" />
+      <Line endX="260" endY="554" startX="220" startY="554" stroke="white" strokeWidth="3" />
+      <Line endX="320" endY="554" startX="280" startY="554" stroke="white" strokeWidth="3" />
+      <Line endX="380" endY="554" startX="340" startY="554" stroke="white" strokeWidth="3" />
+      <Line endX="440" endY="554" startX="400" startY="554" stroke="white" strokeWidth="3" />
+      <Line endX="500" endY="554" startX="460" startY="554" stroke="white" strokeWidth="3" />
+      <Line endX="560" endY="554" startX="520" startY="554" stroke="white" strokeWidth="3" />
+      <Line endX="620" endY="554" startX="580" startY="554" stroke="white" strokeWidth="3" />
+      <Line endX="680" endY="554" startX="640" startY="554" stroke="white" strokeWidth="3" />
+      <Line endX="740" endY="554" startX="700" startY="554" stroke="white" strokeWidth="3" />
+      <Line endX="779.2000122070312" endY="554" startX="760" startY="554" stroke="white" strokeWidth="3" />
+      <Line endX="860" endY="554" layoutX="3.0" startX="843.0000610351562" startY="554" stroke="white" strokeWidth="3" />
+      <Line endX="920" endY="554" startX="880" startY="554" stroke="white" strokeWidth="3" />
+
+      <!-- Yol kenar çizgileri (ince uzun beyaz çizgiler) -->
+
+      <!-- Sol dikey yol sağ kenar -->
+      <Line endX="210" endY="553.6000366210938" startX="210" startY="524.7999877929688" stroke="white" strokeWidth="2" />
+      <!-- Sol dikey yol sol kenar -->
+      <Line endX="150" endY="157.60000610351562" startX="150" startY="129.60000610351562" stroke="white" strokeWidth="2" />
+
+      <!-- Sağ dikey yol sağ kenar -->
+      <Line endX="844.5000610351562" endY="130.39999389648438" startX="844.5000610351562" startY="100.00000762939453" stroke="white" strokeWidth="2" />
+      <!-- Sağ dikey yol sol kenar -->
+      <Line endX="783.0000610351562" endY="160.0" startX="783.0000610351562" startY="131.1999969482422" stroke="white" strokeWidth="2" />
+
+      <!-- Üst yatay yol üst kenar -->
+      <Line endX="179.1999969482422" endY="100.00000762939453" startX="150" startY="100" stroke="white" strokeWidth="2" />
+
+      <!-- Alt yatay yol üst kenar -->
+      <Line endX="843" endY="584" startX="814.3999633789062" startY="584" stroke="white" strokeWidth="2" />
+      <!-- Alt yatay yol alt kenar -->
+      <Line endX="812.0000610351562" endY="644" layoutY="-121.0" startX="783.2000122070312" startY="644" stroke="white" strokeWidth="2" />
+
+      <!-- Trafik Işıkları -->
+
+      <!-- Sol Üst -->
+      <Circle fx:id="lu1" fill="red" layoutX="144.0" layoutY="84.0" radius="6" />
+      <Circle fx:id="lu2" fill="red" layoutX="228.0" layoutY="94.0" radius="6" />
+      <Circle fx:id="lu3" fill="red" layoutX="134.0" layoutY="166.0" radius="6" />
+      <Circle fx:id="lu4" fill="red" layoutX="216.0" layoutY="178.0" radius="6" />
+
+      <!-- Sağ Üst -->
+      <Circle fx:id="ru1" fill="red" layoutX="777.0" layoutY="84.0" radius="6" />
+      <Circle fx:id="ru2" fill="red" layoutX="861.0" layoutY="94.0" radius="6" />
+      <Circle fx:id="ru3" fill="red" layoutX="765.0" layoutY="166.0" radius="6" />
+      <Circle fx:id="ru4" fill="red" layoutX="849.0" layoutY="178.0" radius="6" />
+
+      <!-- Sol Alt -->
+      <Circle fx:id="ld1" fill="red" layoutX="144.0" layoutY="506.0" radius="6" />
+      <Circle fx:id="ld2" fill="red" layoutX="226.0" layoutY="518.0" radius="6" />
+      <Circle fx:id="ld3" fill="red" layoutX="134.0" layoutY="590.0" radius="6" />
+      <Circle fx:id="ld4" fill="red" layoutX="216.0" layoutY="602.0" radius="6" />
+
+      <!-- Sağ Alt -->
+      <Circle fx:id="rd1" fill="red" layoutX="777.0" layoutY="506.0" radius="6" />
+      <Circle fx:id="rd2" fill="red" layoutX="861.0" layoutY="518.0" radius="6" />
+      <Circle fx:id="rd3" fill="red" layoutX="765.0" layoutY="590.0" radius="6" />
+      <Circle fx:id="rd4" fill="red" layoutX="849.0" layoutY="602.0" radius="6" />
+
+      <!-- Go Back Butonu -->
+      <Button layoutX="470.0" layoutY="660.0" mnemonicParsing="false" onAction="#switchToMainPage" text="Go Back" />
+      <Line endX="89.99998474121094" endY="105.0" layoutX="90.0" layoutY="55.0" startX="119.59999084472656" startY="105.0" stroke="white" strokeWidth="2" />
+      <Line endX="260" endY="130" layoutX="-128.0" layoutY="-2.0" startX="220" startY="130" stroke="white" strokeWidth="3" />
+      <Line endX="260" endY="130" layoutX="-192.0" layoutY="-2.0" startX="220" startY="130" stroke="white" strokeWidth="3" />
+      <Line endX="150" endY="157.60000610351562" layoutX="61.0" layoutY="-30.0" startX="150" startY="129.60000610351562" stroke="white" strokeWidth="2" />
+      <Line endX="813" endY="150" layoutX="-1.0" layoutY="-127.0" startX="813.0000610351562" startY="130.59999084472656" stroke="white" strokeWidth="3" />
+      <Line endX="783.0000610351562" endY="160.0" layoutY="422.0" startX="783.0000610351562" startY="131.1999969482422" stroke="white" strokeWidth="2" />
+      <Line endX="783.0000610351562" endY="160.0" layoutX="61.0" layoutY="394.0" startX="783.0000610351562" startY="131.1999969482422" stroke="white" strokeWidth="2" />
+      <Line endX="843" endY="584" layoutY="-424.0" startX="814.3999633789062" startY="584" stroke="white" strokeWidth="2" />
+      <Line endX="812.0000610351562" endY="644" layoutX="-1.0" layoutY="-545.0" startX="783.2000122070312" startY="644" stroke="white" strokeWidth="2" />
+      <Line endX="210" endY="553.6000366210938" layoutX="-61.0" layoutY="28.0" startX="210" startY="524.7999877929688" stroke="white" strokeWidth="2" />
+      <Line endX="200" endY="554" layoutX="-124.0" startX="160" startY="554" stroke="white" strokeWidth="3" />
+      <Line endX="200" endY="554" layoutX="-193.0" startX="185.40000915527344" startY="554" stroke="white" strokeWidth="3" />
+      <Line endX="150.0" endY="519.0" layoutX="29.0" layoutY="66.0" startX="180" startY="519.0" stroke="white" strokeWidth="2.0" />
+      <Line endX="920" endY="554" layoutX="57.0" startX="880" startY="554" stroke="white" strokeWidth="3" />
+      <Line endX="920" endY="554" layoutX="77.0" startX="910.5" startY="554" stroke="white" strokeWidth="3" />
+      <Line endX="920" endY="130" layoutX="57.0" startX="880" startY="130" stroke="white" strokeWidth="3" />
+      <Line endX="920" endY="554" layoutX="77.0" layoutY="-424.0" startX="910.5" startY="554" stroke="white" strokeWidth="3" />
+      <Line endX="813" endY="150" layoutX="-632.0" layoutY="-63.0" startX="813" startY="110" stroke="white" strokeWidth="3" />
+      <Line endX="813" endY="150" layoutX="-632.0" layoutY="-127.0" startX="813.0000610351562" startY="130.59999084472656" stroke="white" strokeWidth="3" />
+
    </children>
+
 </AnchorPane>
