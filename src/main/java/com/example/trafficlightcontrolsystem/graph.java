@@ -16,7 +16,15 @@ public class graph {
 
     public void addEdge(int v1, int v2,int vehicleMax,int roadTime, int fromX, int fromY,int toX,int toY) {
         adjList[v1].add(new Edge(v2,vehicleMax,roadTime,fromX,fromY,toX,toY));
-        adjList[v2].add(new Edge(v1,vehicleMax,roadTime,toX,toY,fromX,fromY));
+    }
+
+    public Edge getEdge(int from, int to) {
+        for (Edge edge : adjList[from]) {
+            if (edge.to == to) {
+                return edge;
+            }
+        }
+        return null; // Eğer Edge yoksa null döner
     }
 
     public void incrementVehicle(int from, int to) {

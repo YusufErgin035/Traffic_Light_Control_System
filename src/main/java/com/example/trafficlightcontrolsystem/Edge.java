@@ -18,6 +18,15 @@ public class Edge {
         this.toX = toX;
         this.toY = toY;
     }
+    public String calcLine(){
+        if(fromX==toX){
+            return "x";
+        }
+        else{
+            return "y";
+        }
+    }
+
 
     public void incrementVehicle() {
         vehicleCount++;
