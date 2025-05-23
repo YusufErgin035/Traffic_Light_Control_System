@@ -18,13 +18,12 @@ public class Edge {
         this.toX = toX;
         this.toY = toY;
     }
-    public String calcLine(){
-        if(fromX==toX){
-            return "x";
-        }
-        else{
-            return "y";
-        }
+    // Edge sınıfında bu metod nasıl implement edilmiş?
+    public String calcLine() {
+        int deltaX = Math.abs(toX - fromX);
+        int deltaY = Math.abs(toY - fromY);
+
+        return deltaX > deltaY ? "x" : "y";
     }
 
 
