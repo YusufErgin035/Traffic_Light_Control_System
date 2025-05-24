@@ -41,13 +41,11 @@ public class DestinationMaker {
     private void moveCarAlongPath(List<Integer> path, int index) {
         if (index >= path.size() - 1) {
             this.pane.getChildren().remove(car.getShape());
-            return; // Yolun sonuna gelindi, hareket durdurulur
+            return;
         }
 
         int from = path.get(index);
         int to = path.get(index + 1);
-
-        // İlgili edge alınır
         Edge edge = g.getEdge(from, to);
 
         if (edge == null) {
@@ -55,52 +53,70 @@ public class DestinationMaker {
             return;
         }
 
-        // Eğer önceki ve şimdiki koordinatlar arasında bir dönüş olacaksa, işlem yapılır
+        // Dönüş kontrolü - sadece gerçek dönüş varsa arcTurn çağır
         if (index > 0) {
-            Edge previousEdge = g.getEdge(path.get(index - 1), from); // Önceki kenarı al
-            if (previousEdge != null) {
-                // Dönüş durumunu kontrol et
+            Edge previousEdge = g.getEdge(path.get(index - 1), from);
+            if (previousEdge != null && needsTurn(previousEdge, edge)) {
                 boolean clockwise = shouldTurnClockwise(previousEdge, edge);
-                car.arcTurn(clockwise); // Saat yönünde mi, yoksa ters mi döneceğini belirle ve uygula
+                car.arcTurn(clockwise);
             }
         }
 
-        // Aracın hareket etmesi
+        // Hareket animasyonu
         Line line = new Line(edge.fromX, edge.fromY, edge.toX, edge.toY);
         PathTransition transition = new PathTransition();
-        transition.setDuration(Duration.seconds(edge.roadTime)); // Yol süresine bağlı animasyon süresi
+        transition.setDuration(Duration.seconds(edge.roadTime));
         transition.setPath(line);
         transition.setNode(car.getShape());
         transition.setCycleCount(1);
         transition.setAutoReverse(false);
 
-        // Animasyon tamamlandıktan sonra bir sonraki edge üzerinde hareketi başlat
         transition.setOnFinished(event -> moveCarAlongPath(path, index + 1));
-
-        // Animasyonu başlat
         transition.play();
     }
+
+    /**
+     * Gerçekten dönüş gerekip gerekmediğini kontrol et
+     */
+    private boolean needsTurn(Edge previousEdge, Edge currentEdge) {
+        // Önceki edge açısı
+        double prevAngle = Math.toDegrees(Math.atan2(
+                previousEdge.toY - previousEdge.fromY,
+                previousEdge.toX - previousEdge.fromX
+        ));
+
+        // Şimdiki edge açısı
+        double currAngle = Math.toDegrees(Math.atan2(
+                currentEdge.toY - currentEdge.fromY,
+                currentEdge.toX - currentEdge.fromX
+        ));
+
+        // Açı farkını hesapla
+        double diff = Math.abs(currAngle - prevAngle);
+        while (diff > 180) diff -= 360;
+        diff = Math.abs(diff);
+
+        // 10 dereceden fazla fark varsa dönüş gerekiyor
+        return diff > 10;
+    }
     private boolean shouldTurnClockwise(Edge previousEdge, Edge currentEdge) {
-        // Önceki kenarın bitiş noktası ile bir sonraki kenarın başlangıç noktası arasında kontrol
-        int deltaX = currentEdge.toX - previousEdge.toX; // X koordinat farkı
-        int deltaY = currentEdge.toY - previousEdge.toY; // Y koordinat farkı
+        // Önceki edge açısı
+        double prevAngle = Math.toDegrees(Math.atan2(
+                previousEdge.toY - previousEdge.fromY,
+                previousEdge.toX - previousEdge.fromX
+        ));
 
-        // Sağa dönme için saat yönü dönüşü
-        if (deltaX > 0 && deltaY == 0) { // Sağa gidiyorsak
-            return true; // Saat yönünde
-        }
+        // Şimdiki edge açısı
+        double currAngle = Math.toDegrees(Math.atan2(
+                currentEdge.toY - currentEdge.fromY,
+                currentEdge.toX - currentEdge.fromX
+        ));
 
-        // Sola dönme için saat yönünün ters dönüşü
-        if (deltaX < 0 && deltaY == 0) { // Sola gidiyorsak
-            return false; // Saat yönünün tersi
-        }
+        // Açı farkını hesapla
+        double diff = currAngle - prevAngle;
+        while (diff > 180) diff -= 360;
+        while (diff < -180) diff += 360;
 
-        // Yukarı veya aşağı gidiyorsak
-        if (deltaY != 0) {
-            return deltaY > 0; // Eğer yukarı gidiliyorsa, saat yönünde dön
-        }
-
-        // Varsayılan durum: saat yönü
-        return true;
+        return diff > 0; // Pozitif = saat yönünde
     }
 }
