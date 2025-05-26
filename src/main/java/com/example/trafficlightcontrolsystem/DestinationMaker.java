@@ -33,55 +33,36 @@ public class DestinationMaker {
         this.fullPath = g.dijkstra(this.start,this.end);
 
         // İlk edge'in vehicle count'ını artır (araç yola çıkıyor)
-        if (fullPath.size() > 1) {
-            g.incrementVehicle(fullPath.get(0), fullPath.get(1));
+        if (this.fullPath.size() > 1) {
+            g.incrementVehicle(this.fullPath.get(0), this.fullPath.get(1));
         }
 
         double red = rand.nextDouble();
         double green = rand.nextDouble();
         double blue = rand.nextDouble();
         Edge edge = g.getEdge(fullPath.get(0),fullPath.get(1));
-        this.car = new Car(0,0,Color.color(red,green,blue), edge.calcLine());
+        this.car = new Car(0, 0, Color.color(red,green,blue), edge.calcLine());
         this.pane.getChildren().add(car.getShape());
-        makeDestination(this.start,this.end);
+        moveCarAlongPath(0);
     }
 
-    public void makeDestination(int start, int end) {
-        moveCarAlongPath(fullPath, 0);
-    }
-
-    private void moveCarAlongPath(List<Integer> path, int index) {
-        if (index >= path.size() - 1) {
-            // Araç hedefe ulaştı, mevcut edge'den çık
-            if (index > 0) {
-                g.decrementVehicle(fullPath.get(index - 1), fullPath.get(index));
-            }
-            this.pane.getChildren().remove(car.getShape());
-            return;
-        }
-
-        int from = path.get(index);
-        int to = path.get(index + 1);
+    private void moveCarAlongPath( int index) {
+        int from = this.fullPath.get(index);
+        int to = this.fullPath.get(index + 1);
         Edge edge = g.getEdge(from, to);
-
         if (edge == null) {
             System.out.println("Kenar bulunamadı: " + from + " -> " + to);
             return;
         }
-
-        // Kavşağa geliyorsak trafik ışığını kontrol et
-        if (isIntersection(to)) {
-            checkTrafficLightAndMove(path, index, from, to, edge);
-        } else {
-            // Normal yolda, direkt hareket et
-            performMovement(path, index, edge);
-        }
+        moveCarAlongEdge(edge,index);
     }
 
-    private void checkTrafficLightAndMove(List<Integer> path, int index, int from, int to, Edge edge) {
+    private void checkTrafficLightAndMove(List<Integer> path, int index, Edge edge) {
         // Hangi kavşak ve hangi yön olduğunu bul
+        int from = this.fullPath.get(index);
+        int to = this.fullPath.get(index + 1);
         String intersection = getIntersectionName(to);
-        int direction = getDirectionIndex(from, to);
+        int direction = getDirectionIndex(from,to);
 
         System.out.println("Araç " + from + "->" + to + " yolunda, kavşak: " + intersection + ", yön: " + direction);
 
@@ -90,13 +71,36 @@ public class DestinationMaker {
             if (isLightGreen(intersection, direction)) {
                 System.out.println("Yeşil ışık - araç geçiyor");
                 // Yeşil ışık - geç
-                performMovement(path, index, edge);
+                if (index > 0) {
+                    this.g.decrementVehicle(path.get(index - 1), path.get(index));
+                }
+                // Sonraki edge'e gir (eğer varsa)
+                if (index + 2 < path.size()) {
+                    this.g.incrementVehicle(path.get(index + 1), path.get(index + 2));
+                }
+                if (index <path.size()-1) {
+                    Edge nextEdge = this.g.getEdge(path.get(index+1), path.get(index+2));
+                    if (needsTurn(edge, nextEdge)) {
+                        boolean clockwise = shouldTurnClockwise(edge, nextEdge);
+                        this.car.arcTurn(clockwise);
+                    }
+                }
+                moveCarAlongPath(index+1);
             } else {
                 System.out.println("Kırmızı ışık - araç bekliyor");
                 // Kırmızı ışık - bekle ve tekrar kontrol et
+                if (this.car.isWaiting()) {
+                    // Araç zaten bekliyorsa yeni bir Timeline başlatma
+                    return;
+                }
+
+                this.car.setWaiting(true); // Araç bekleme durumuna geçiyor
+
                 Timeline waitTimeline = new Timeline(
-                        new KeyFrame(Duration.seconds(1), e -> {
-                            checkTrafficLightAndMove(path, index, from, to, edge);
+                        new KeyFrame(Duration.millis(500), e -> {
+                            // Işık tekrar kontrol ediliyor
+                            this.car.setWaiting(false); // Araç önceki döngüsü tamamlandıktan sonra beklemeyi bırakır
+                            checkTrafficLightAndMove(path,index,edge);
                         })
                 );
                 waitTimeline.play();
@@ -104,13 +108,36 @@ public class DestinationMaker {
         } else {
             System.out.println("Intersection bulunamadı - normal hareket");
             // Intersection bulunamadı, normal hareket et
-            performMovement(path, index, edge);
+            moveCarAlongEdge(edge,index+1);
         }
+    }
+
+    private void moveCarAlongEdge(Edge edge,int index) {
+        Line line = new Line(edge.fromX, edge.fromY, edge.toX, edge.toY);
+        PathTransition transition = new PathTransition();
+        transition.setDuration(Duration.seconds(edge.roadTime));
+        transition.setPath(line);
+        transition.setNode(this.car.getShape());
+        transition.setCycleCount(1);
+        transition.setAutoReverse(false);
+        if(index==fullPath.size()-2) {
+            transition.setOnFinished(event
+                    -> {
+                System.out.println("Araç hedefe ulaştı, kaldırılıyor...");
+                this.g.decrementVehicle(this.fullPath.get(fullPath.size()-2),this.fullPath.get(fullPath.size()-1));
+                this.pane.getChildren().remove(car.getShape());
+            } );
+        }
+        else{
+            transition.setOnFinished(event
+                    -> checkTrafficLightAndMove(fullPath,index,edge));
+        }
+        transition.play();
     }
 
     private void performMovement(List<Integer> path, int index, Edge edge) {
         // Dönüş kontrolü
-        if (index > 0) {
+        if (index > 0 && index <path.size()-1) {
             Edge previousEdge = g.getEdge(path.get(index - 1), path.get(index));
             if (previousEdge != null && needsTurn(previousEdge, edge)) {
                 boolean clockwise = shouldTurnClockwise(previousEdge, edge);
@@ -136,7 +163,7 @@ public class DestinationMaker {
             if (index + 2 < path.size()) {
                 g.incrementVehicle(path.get(index + 1), path.get(index + 2));
             }
-            moveCarAlongPath(path, index + 1);
+            moveCarAlongPath(index + 1);
         });
         transition.play();
     }

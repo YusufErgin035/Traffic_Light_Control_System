@@ -11,6 +11,12 @@ public class Car {
     Rectangle shape;
     double speed;
     private double currentAngle = 0; // Aracın mevcut açısı (derece)
+    private boolean isWaiting;
+
+    // Bekleme durumunu kontrol eden getter ve setter
+    public boolean isWaiting() {return isWaiting;}
+
+    public void setWaiting(boolean waiting) {isWaiting = waiting;}
 
     public Car(double x, double y, Color color, String orientation) {
         // Hep aynı boyutta araç, sadece döndüreceğiz
@@ -18,6 +24,7 @@ public class Car {
         shape.setLayoutX(x);
         shape.setLayoutY(y);
         speed = 20;
+
 
         // Başlangıç orientasyonuna göre açıyı ayarla
         if ("y".equalsIgnoreCase(orientation)) {

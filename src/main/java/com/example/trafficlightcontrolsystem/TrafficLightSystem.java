@@ -42,14 +42,14 @@ public class TrafficLightSystem {
     public void startTrafficControl() {
         // Başlangıçta tüm ışıkları kırmızı yap
         setAllLightsRed();
-
+        startTrafficCycle();
         // 4 saniye bekle, sonra trafik kontrolünü başlat
-        Timeline initialDelay = new Timeline(
+        /*Timeline initialDelay = new Timeline(
                 new KeyFrame(Duration.seconds(4), e -> {
                     startTrafficCycle();
                 })
         );
-        initialDelay.play();
+        initialDelay.play();*/
     }
 
     private void startTrafficCycle() {

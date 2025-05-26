@@ -95,28 +95,28 @@
       <!-- Trafik Işıkları -->
 
       <!-- Sol Üst -->
-      <Circle fx:id="lu1" fill="red" layoutX="144.0" layoutY="84.0" radius="6" />
-      <Circle fx:id="lu2" fill="red" layoutX="228.0" layoutY="94.0" radius="6" />
-      <Circle fx:id="lu3" fill="red" layoutX="134.0" layoutY="166.0" radius="6" />
-      <Circle fx:id="lu4" fill="red" layoutX="216.0" layoutY="178.0" radius="6" />
+      <Circle fx:id="lu2" fill="red" layoutX="144.0" layoutY="84.0" radius="6" />
+      <Circle fx:id="lu4" fill="red" layoutX="228.0" layoutY="94.0" radius="6" />
+      <Circle fx:id="lu1" fill="red" layoutX="134.0" layoutY="166.0" radius="6" />
+      <Circle fx:id="lu3" fill="red" layoutX="216.0" layoutY="178.0" radius="6" />
 
       <!-- Sağ Üst -->
-      <Circle fx:id="ru1" fill="red" layoutX="777.0" layoutY="84.0" radius="6" />
-      <Circle fx:id="ru2" fill="red" layoutX="861.0" layoutY="94.0" radius="6" />
-      <Circle fx:id="ru3" fill="red" layoutX="765.0" layoutY="166.0" radius="6" />
-      <Circle fx:id="ru4" fill="red" layoutX="849.0" layoutY="178.0" radius="6" />
+      <Circle fx:id="ru2" fill="red" layoutX="777.0" layoutY="84.0" radius="6" />
+      <Circle fx:id="ru4" fill="red" layoutX="861.0" layoutY="94.0" radius="6" />
+      <Circle fx:id="ru1" fill="red" layoutX="765.0" layoutY="166.0" radius="6" />
+      <Circle fx:id="ru3" fill="red" layoutX="849.0" layoutY="178.0" radius="6" />
 
       <!-- Sol Alt -->
-      <Circle fx:id="ld1" fill="red" layoutX="144.0" layoutY="506.0" radius="6" />
-      <Circle fx:id="ld2" fill="red" layoutX="226.0" layoutY="518.0" radius="6" />
-      <Circle fx:id="ld3" fill="red" layoutX="134.0" layoutY="590.0" radius="6" />
-      <Circle fx:id="ld4" fill="red" layoutX="216.0" layoutY="602.0" radius="6" />
+      <Circle fx:id="ld2" fill="red" layoutX="144.0" layoutY="506.0" radius="6" />
+      <Circle fx:id="ld4" fill="red" layoutX="226.0" layoutY="518.0" radius="6" />
+      <Circle fx:id="ld1" fill="red" layoutX="134.0" layoutY="590.0" radius="6" />
+      <Circle fx:id="ld3" fill="red" layoutX="216.0" layoutY="602.0" radius="6" />
 
       <!-- Sağ Alt -->
-      <Circle fx:id="rd1" fill="red" layoutX="777.0" layoutY="506.0" radius="6" />
-      <Circle fx:id="rd2" fill="red" layoutX="861.0" layoutY="518.0" radius="6" />
-      <Circle fx:id="rd3" fill="red" layoutX="765.0" layoutY="590.0" radius="6" />
-      <Circle fx:id="rd4" fill="red" layoutX="849.0" layoutY="602.0" radius="6" />
+      <Circle fx:id="rd2" fill="red" layoutX="777.0" layoutY="506.0" radius="6" />
+      <Circle fx:id="rd4" fill="red" layoutX="861.0" layoutY="518.0" radius="6" />
+      <Circle fx:id="rd1" fill="red" layoutX="765.0" layoutY="590.0" radius="6" />
+      <Circle fx:id="rd3" fill="red" layoutX="849.0" layoutY="602.0" radius="6" />
 
       <!-- Go Back Butonu -->
       <Button layoutX="470.0" layoutY="660.0" mnemonicParsing="false" onAction="#switchToMainPage" text="Go Back" />

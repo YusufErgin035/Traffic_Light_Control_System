@@ -47,15 +47,15 @@ public class TrafficController {
                 ru1, ru2, ru3, ru4,
                 ld1, ld2, ld3, ld4,
                 rd1, rd2, rd3, rd4);
-
+        DestinationMaker dm = new DestinationMaker(g, mainPane, trafficLightSystem);
         // 4 saniye sonra trafik sistemi hazır olacak ve araçlar çıkmaya başlayacak
-        Timeline systemReadyTimer = new Timeline(
-                new KeyFrame(Duration.seconds(4), e -> {
-                    trafficSystemReady = true;
-                    startCarGeneration();
-                })
-        );
-        systemReadyTimer.play();
+//        Timeline systemReadyTimer = new Timeline(
+//                new KeyFrame(Duration.seconds(4), e -> {
+//                    trafficSystemReady = true;
+//                    startCarGeneration();
+//                })
+//        );
+//        systemReadyTimer.play();
 
         trafficLightSystem.startTrafficControl();
     }
