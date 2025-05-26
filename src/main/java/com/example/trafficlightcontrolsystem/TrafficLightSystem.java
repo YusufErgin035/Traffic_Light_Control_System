@@ -42,19 +42,18 @@ public class TrafficLightSystem {
     public void startTrafficControl() {
         // Başlangıçta tüm ışıkları kırmızı yap
         setAllLightsRed();
-        startTrafficCycle();
         // 4 saniye bekle, sonra trafik kontrolünü başlat
-        /*Timeline initialDelay = new Timeline(
+        Timeline initialDelay = new Timeline(
                 new KeyFrame(Duration.seconds(4), e -> {
                     startTrafficCycle();
                 })
         );
-        initialDelay.play();*/
+        initialDelay.play();
     }
 
     private void startTrafficCycle() {
         trafficControlTimeline = new Timeline(
-                new KeyFrame(Duration.seconds(5), e -> {
+                new KeyFrame(Duration.seconds(1), e -> {
                     controlTrafficLights();
                 })
         );
@@ -71,7 +70,7 @@ public class TrafficLightSystem {
         // Her kavşak için en kalabalık yolu bul ve yeşil yak
         for (String intersection : trafficLights.keySet()) {
             int busiestDirection = findBusiestDirectionAtIntersection(intersection);
-            if (busiestDirection != -1) {
+            if (busiestDirection !=-1 && busiestDirection!=0) {
                 setLightGreen(intersection, busiestDirection);
             } else {
                 System.out.println(intersection.toUpperCase() + " kavşağında hiç araç yok");

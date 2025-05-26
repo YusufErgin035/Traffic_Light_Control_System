@@ -11,7 +11,7 @@ public class Car {
     Rectangle shape;
     double speed;
     private double currentAngle = 0; // Aracın mevcut açısı (derece)
-    private boolean isWaiting;
+    private boolean isWaiting=false;
 
     // Bekleme durumunu kontrol eden getter ve setter
     public boolean isWaiting() {return isWaiting;}
