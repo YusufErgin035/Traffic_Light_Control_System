@@ -44,7 +44,7 @@ public class TrafficLightSystem {
         setAllLightsRed();
         // 4 saniye bekle, sonra trafik kontrolünü başlat
         Timeline initialDelay = new Timeline(
-                new KeyFrame(Duration.seconds(4), e -> {
+                new KeyFrame(Duration.seconds(3), e -> {
                     startTrafficCycle();
                 })
         );
@@ -53,7 +53,7 @@ public class TrafficLightSystem {
 
     private void startTrafficCycle() {
         trafficControlTimeline = new Timeline(
-                new KeyFrame(Duration.seconds(1), e -> {
+                new KeyFrame(Duration.millis(5000), e -> {
                     controlTrafficLights();
                 })
         );
@@ -62,21 +62,22 @@ public class TrafficLightSystem {
     }
 
     private void controlTrafficLights() {
-        // Önce tüm ışıkları kırmızı yap
         setAllLightsRed();
+        System.out.println("\n=== YENİ DÖNGÜ ===");
 
-        System.out.println("=== Trafik Durumu ===");
-
-        // Her kavşak için en kalabalık yolu bul ve yeşil yak
+        // Her kavşak için
         for (String intersection : trafficLights.keySet()) {
             int busiestDirection = findBusiestDirectionAtIntersection(intersection);
-            if (busiestDirection !=-1 && busiestDirection!=0) {
+            System.out.println(intersection.toUpperCase() + " sonuç: " + busiestDirection);
+
+            if (busiestDirection != -1) {
                 setLightGreen(intersection, busiestDirection);
+                System.out.println("  ✅ YEŞİL YAKTI");
             } else {
-                System.out.println(intersection.toUpperCase() + " kavşağında hiç araç yok");
+                System.out.println("  ❌ HİÇ IŞIK YANMADI");
             }
         }
-        System.out.println("==================");
+        System.out.println("=================\n");
     }
 
     private int findBusiestDirectionAtIntersection(String intersection) {
@@ -98,17 +99,26 @@ public class TrafficLightSystem {
                 String[] dirNames = {"Sol", "Üst", "Alt", "Sağ"};
                 System.out.println("  " + dirNames[i] + " yönden (" + fromNode + "->" + targetNode + "): " + vehicleCount + " araç");
 
-                // En kalabalık yolu bul, eşitlik durumunda rastgele seç
+                // ✅ BU KISMI KONTROL ET:
                 if (vehicleCount > maxTraffic ||
                         (vehicleCount == maxTraffic && vehicleCount > 0 && random.nextBoolean())) {
                     maxTraffic = vehicleCount;
                     busiestDirection = i;
+                    System.out.println("    --> Seçildi: " + dirNames[i] + " (" + vehicleCount + " araç)");
                 }
             }
         }
 
         // En az 1 araç varsa o yönü seç, yoksa -1 döndür
-        return maxTraffic > 0 ? busiestDirection : -1;
+        int result = maxTraffic > 0 ? busiestDirection : -1;
+
+        // ✅ BURAYI EKLE:
+        if (result == -1) {
+            result = random.nextInt(4); // 0-3 arası rastgele
+            System.out.println("Hiç araç yok, rastgele yön seçildi: " + result);
+        }
+
+        return result;
     }
 
     private int getNodeIdFromIntersection(String intersection) {

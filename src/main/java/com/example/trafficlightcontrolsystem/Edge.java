@@ -43,4 +43,9 @@ public class Edge {
     public int getCost() {
         return vehicleCount;
     }
+
+    public void resetVehicleCount() {
+        if (vehicleCount < 0) vehicleCount = 0;
+        if (vehicleCount > vehicleMax) vehicleCount = vehicleMax;
+    }
 }
