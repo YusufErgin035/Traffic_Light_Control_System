@@ -62,6 +62,8 @@ public class TrafficLightSystem {
     }
 
     private void controlTrafficLights() {
+        resetAllVehicleCounts(); // ✅ Her döngüde temizle
+        setAllLightsRed();
         setAllLightsRed();
         System.out.println("\n=== YENİ DÖNGÜ ===");
 
@@ -78,6 +80,17 @@ public class TrafficLightSystem {
             }
         }
         System.out.println("=================\n");
+    }
+
+    private void resetAllVehicleCounts() {
+        for(int i = 0; i < 12; i++) {
+            for(int j = 0; j < 12; j++) {
+                Edge edge = graph.getEdge(i, j);
+                if(edge != null && edge.vehicleCount < 0) {
+                    edge.vehicleCount = 0; // Negatif sayıları sıfırla
+                }
+            }
+        }
     }
 
     private int findBusiestDirectionAtIntersection(String intersection) {
