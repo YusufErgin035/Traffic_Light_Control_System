@@ -19,6 +19,7 @@ public class DestinationMaker {
     private AnchorPane pane;
     private List<Integer> fullPath;
     private TrafficLightSystem trafficSystem;
+    private int currentEdgeIndex = 0;
 
     public DestinationMaker(graph g, AnchorPane pane, TrafficLightSystem trafficSystem) {
         Random rand = new Random();
@@ -155,15 +156,15 @@ public class DestinationMaker {
         transition.setAutoReverse(false);
 
         transition.setOnFinished(event -> {
-            // Önceki edge'den çık
-            if (index > 0) {
-                g.decrementVehicle(path.get(index - 1), path.get(index));
+            syncGraphWithAnimation();
+
+            if (currentEdgeIndex >= fullPath.size() - 1) {
+                // Araç hedefe ulaştı
+                this.pane.getChildren().remove(car.getShape());
+                return;
             }
-            // Sonraki edge'e gir (eğer varsa)
-            if (index + 2 < path.size()) {
-                g.incrementVehicle(path.get(index + 1), path.get(index + 2));
-            }
-            moveCarAlongPath(index + 1);
+
+            moveCarAlongPath(currentEdgeIndex + 1);
         });
         transition.play();
     }
@@ -253,6 +254,20 @@ public class DestinationMaker {
         while (diff < -180) diff += 360;
 
         return diff > 0;
+    }
+
+    private void syncGraphWithAnimation() {
+        // Mevcut konumu graph'tan temizle
+        if (currentEdgeIndex > 0 && currentEdgeIndex < fullPath.size()) {
+            g.decrementVehicle(fullPath.get(currentEdgeIndex - 1), fullPath.get(currentEdgeIndex));
+        }
+
+        // Yeni konuma kaydet
+        if (currentEdgeIndex + 1 < fullPath.size()) {
+            g.incrementVehicle(fullPath.get(currentEdgeIndex), fullPath.get(currentEdgeIndex + 1));
+        }
+
+        currentEdgeIndex++;
     }
 
 
