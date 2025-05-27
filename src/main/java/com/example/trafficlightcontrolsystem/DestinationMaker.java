@@ -8,6 +8,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.util.Duration;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -20,6 +21,8 @@ public class DestinationMaker {
     private List<Integer> fullPath;
     private TrafficLightSystem trafficSystem;
     private int currentEdgeIndex = 0;
+    private List<Timeline> activeTimelines = new ArrayList<>();
+    private List<PathTransition> activeTransitions = new ArrayList<>();
 
     public DestinationMaker(graph g, AnchorPane pane, TrafficLightSystem trafficSystem) {
         Random rand = new Random();
@@ -35,6 +38,7 @@ public class DestinationMaker {
 
         // İlk edge'in vehicle count'ını artır (araç yola çıkıyor)
         if (this.fullPath.size() > 1) {
+            System.out.println("YENİ ARAÇ: " + this.fullPath.get(0) + "->" + this.fullPath.get(1));
             g.incrementVehicle(this.fullPath.get(0), this.fullPath.get(1));
         }
 
@@ -47,7 +51,19 @@ public class DestinationMaker {
         moveCarAlongPath(0);
     }
 
-    private void moveCarAlongPath( int index) {
+    private void moveCarAlongPath(int index) {
+        if (index >= fullPath.size() - 1) {
+            // ✅ Son durumda tüm araç bilgilerini temizle
+            if (index > 0) {
+                System.out.println("SON ARAÇ ÇIKIYOR: " + fullPath.get(index-1) + "->" + fullPath.get(index));
+                g.decrementVehicle(fullPath.get(index-1), fullPath.get(index));
+            }
+            cleanup();
+            this.pane.getChildren().remove(car.getShape());
+            System.out.println("Araç tamamen temizlendi");
+            return;
+        }
+
         int from = this.fullPath.get(index);
         int to = this.fullPath.get(index + 1);
         Edge edge = g.getEdge(from, to);
@@ -55,10 +71,10 @@ public class DestinationMaker {
             System.out.println("Kenar bulunamadı: " + from + " -> " + to);
             return;
         }
-        moveCarAlongEdge(edge,index);
+        moveCarAlongEdge(edge, index);
     }
-
     private void checkTrafficLightAndMove(List<Integer> path, int index, Edge edge) {
+        System.out.println("DEBUG: checkTrafficLightAndMove çağırıldı - index: " + index + ", path size: " + path.size());
         // Hangi kavşak ve hangi yön olduğunu bul
         int from = this.fullPath.get(index);
         int to = this.fullPath.get(index + 1);
@@ -99,11 +115,12 @@ public class DestinationMaker {
 
                 Timeline waitTimeline = new Timeline(
                         new KeyFrame(Duration.millis(500), e -> {
-                            // Işık tekrar kontrol ediliyor
-                            this.car.setWaiting(false); // Araç önceki döngüsü tamamlandıktan sonra beklemeyi bırakır
+                            this.car.setWaiting(false);
                             checkTrafficLightAndMove(path,index,edge);
                         })
                 );
+                activeTimelines.add(waitTimeline);
+                waitTimeline.setCycleCount(1);
                 waitTimeline.play();
             }
         } else {
@@ -121,17 +138,25 @@ public class DestinationMaker {
         transition.setNode(this.car.getShape());
         transition.setCycleCount(1);
         transition.setAutoReverse(false);
+
+        activeTransitions.add(transition); // ✅ Timeline'ı takip et
+
         if(index==fullPath.size()-2) {
-            transition.setOnFinished(event
-                    -> {
-                System.out.println("Araç hedefe ulaştı, kaldırılıyor...");
+            transition.setOnFinished(event -> {
+                // ✅ ÖNCE graph'tan sil
                 this.g.decrementVehicle(this.fullPath.get(fullPath.size()-2),this.fullPath.get(fullPath.size()-1));
+
+                // ✅ SONRA timeline temizle
+                cleanup();
+
+                // ✅ EN SON görsel sil
                 this.pane.getChildren().remove(car.getShape());
-            } );
+
+                System.out.println("Araç tamamen temizlendi");
+            });
         }
         else{
-            transition.setOnFinished(event
-                    -> checkTrafficLightAndMove(fullPath,index,edge));
+            transition.setOnFinished(event -> checkTrafficLightAndMove(fullPath,index,edge));
         }
         transition.play();
     }
@@ -155,18 +180,31 @@ public class DestinationMaker {
         transition.setCycleCount(1);
         transition.setAutoReverse(false);
 
+        activeTransitions.add(transition); // ✅ Sadece bu satırı ekle
+
         transition.setOnFinished(event -> {
             syncGraphWithAnimation();
-
             if (currentEdgeIndex >= fullPath.size() - 1) {
-                // Araç hedefe ulaştı
+                cleanup(); // ✅ Bu satırı ekle
                 this.pane.getChildren().remove(car.getShape());
                 return;
             }
-
             moveCarAlongPath(currentEdgeIndex + 1);
         });
         transition.play();
+    }
+
+    private void cleanup() {
+        car.cleanup();
+
+        for(PathTransition pt : activeTransitions) {
+            pt.stop();
+        }
+        for(Timeline tl : activeTimelines) {
+            tl.stop();
+        }
+        activeTransitions.clear();
+        activeTimelines.clear();
     }
 
     private boolean isIntersection(int nodeId) {
@@ -259,16 +297,16 @@ public class DestinationMaker {
     private void syncGraphWithAnimation() {
         // Mevcut konumu graph'tan temizle
         if (currentEdgeIndex > 0 && currentEdgeIndex < fullPath.size()) {
+            System.out.println("Araç çıkıyor: " + fullPath.get(currentEdgeIndex - 1) + "->" + fullPath.get(currentEdgeIndex));
             g.decrementVehicle(fullPath.get(currentEdgeIndex - 1), fullPath.get(currentEdgeIndex));
         }
 
         // Yeni konuma kaydet
         if (currentEdgeIndex + 1 < fullPath.size()) {
+            System.out.println("Araç giriyor: " + fullPath.get(currentEdgeIndex) + "->" + fullPath.get(currentEdgeIndex + 1));
             g.incrementVehicle(fullPath.get(currentEdgeIndex), fullPath.get(currentEdgeIndex + 1));
         }
 
         currentEdgeIndex++;
     }
-
-
 }

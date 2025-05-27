@@ -7,11 +7,16 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.util.Duration;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Car {
     Rectangle shape;
     double speed;
     private double currentAngle = 0; // Aracın mevcut açısı (derece)
     private boolean isWaiting=false;
+    private List<PathTransition> activePathTransitions = new ArrayList<>();
+    private List<RotateTransition> activeRotateTransitions = new ArrayList<>();
 
     // Bekleme durumunu kontrol eden getter ve setter
     public boolean isWaiting() {return isWaiting;}
@@ -104,7 +109,19 @@ public class Car {
         transition.setCycleCount(1);
         transition.setAutoReverse(false);
 
+        activePathTransitions.add(transition);
         transition.play();
+    }
+
+    public void cleanup() {
+        for(PathTransition pt : activePathTransitions) {
+            pt.stop();
+        }
+        for(RotateTransition rt : activeRotateTransitions) {
+            rt.stop();
+        }
+        activePathTransitions.clear();
+        activeRotateTransitions.clear();
     }
 
     /**

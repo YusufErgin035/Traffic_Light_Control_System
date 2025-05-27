@@ -62,25 +62,63 @@ public class TrafficLightSystem {
     }
 
     private void controlTrafficLights() {
-        resetAllVehicleCounts(); // ✅ Her döngüde temizle
-        setAllLightsRed();
-        setAllLightsRed();
-        System.out.println("\n=== YENİ DÖNGÜ ===");
+        forceCleanupGraph();
 
-        // Her kavşak için
-        for (String intersection : trafficLights.keySet()) {
-            int busiestDirection = findBusiestDirectionAtIntersection(intersection);
-            System.out.println(intersection.toUpperCase() + " sonuç: " + busiestDirection);
+        setAllLightsRed();
 
-            if (busiestDirection != -1) {
-                setLightGreen(intersection, busiestDirection);
-                System.out.println("  ✅ YEŞİL YAKTI");
-            } else {
-                System.out.println("  ❌ HİÇ IŞIK YANMADI");
+        System.out.println("\n=== ARAÇ DURUMU ===");
+        for(int i = 0; i < 12; i++) {
+            for(int j = 0; j < 12; j++) {
+                Edge edge = graph.getEdge(i, j);
+                if(edge != null && edge.vehicleCount > 0) {
+                    System.out.println("Edge " + i + "->" + j + ": " + edge.vehicleCount + " araç");
+                }
             }
         }
-        System.out.println("=================\n");
+        System.out.println("===================\n");
+
+        int[] intersectionNodes = {8, 9, 10, 11};
+        String[] intersectionNames = {"lu", "ru", "ld", "rd"};
+
+        for(int i = 0; i < intersectionNodes.length; i++) {
+            int nodeId = intersectionNodes[i];
+            String intersection = intersectionNames[i];
+
+            int busiestDirection = findBusiestDirectionAtIntersection(intersection);
+            if (busiestDirection != -1) {
+                setLightGreen(intersection, busiestDirection);
+            }
+        }
     }
+
+    private void forceCleanupGraph() {
+        for(int i = 0; i < 12; i++) {
+            for(int j = 0; j < 12; j++) {
+                Edge edge = graph.getEdge(i, j);
+                if(edge != null && edge.vehicleCount > 3) { // 3'ten fazla araç varsa zorla sıfırla
+                    System.out.println("ZORLA TEMİZLEME: Edge " + i + "->" + j + " (" + edge.vehicleCount + " araç)");
+                    edge.vehicleCount = 0;
+                }
+            }
+        }
+    }
+
+    /*private void cleanupGhostVehicles() {
+        for(int i = 0; i < 12; i++) {
+            for(int j = 0; j < 12; j++) {
+                Edge edge = graph.getEdge(i, j);
+                if(edge != null) {
+                    // Hayalet araçları temizle
+                    if(edge.vehicleCount > edge.vehicleMax) {
+                        edge.vehicleCount = edge.vehicleMax;
+                    }
+                    if(edge.vehicleCount < 0) {
+                        edge.vehicleCount = 0;
+                    }
+                }
+            }
+        }
+    }*/
 
     private void resetAllVehicleCounts() {
         for(int i = 0; i < 12; i++) {
@@ -100,8 +138,6 @@ public class TrafficLightSystem {
         int maxTraffic = -1;
         int busiestDirection = -1;
 
-        System.out.println(intersection.toUpperCase() + " kavşağı analizi:");
-
         // Bu kavşağa gelen her yönün araç sayısını kontrol et
         for (int i = 0; i < incomingNodes.length; i++) {
             int fromNode = incomingNodes[i];
@@ -110,14 +146,11 @@ public class TrafficLightSystem {
             if (edge != null) {
                 int vehicleCount = edge.vehicleCount;
                 String[] dirNames = {"Sol", "Üst", "Alt", "Sağ"};
-                System.out.println("  " + dirNames[i] + " yönden (" + fromNode + "->" + targetNode + "): " + vehicleCount + " araç");
 
-                // ✅ BU KISMI KONTROL ET:
                 if (vehicleCount > maxTraffic ||
                         (vehicleCount == maxTraffic && vehicleCount > 0 && random.nextBoolean())) {
                     maxTraffic = vehicleCount;
                     busiestDirection = i;
-                    System.out.println("    --> Seçildi: " + dirNames[i] + " (" + vehicleCount + " araç)");
                 }
             }
         }
@@ -128,7 +161,6 @@ public class TrafficLightSystem {
         // ✅ BURAYI EKLE:
         if (result == -1) {
             result = random.nextInt(4); // 0-3 arası rastgele
-            System.out.println("Hiç araç yok, rastgele yön seçildi: " + result);
         }
 
         return result;
@@ -156,12 +188,6 @@ public class TrafficLightSystem {
         Circle[] lights = trafficLights.get(intersection);
         if (lights != null && direction >= 0 && direction < lights.length) {
             lights[direction].setFill(Color.GREEN);
-
-            // Debug için konsola yazdır
-            String[] directions = {"Sol", "Üst", "Alt", "Sağ"};
-            System.out.println(intersection.toUpperCase() + " kavşağında " +
-                    directions[direction] + " yönü yeşil - Araç sayısı: " +
-                    getTrafficCount(intersection, direction));
         }
     }
 
