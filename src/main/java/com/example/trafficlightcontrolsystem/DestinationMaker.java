@@ -53,7 +53,7 @@ public class DestinationMaker {
 
     private void moveCarAlongPath(int index) {
         if (index >= fullPath.size() - 1) {
-            // ✅ Son durumda tüm araç bilgilerini temizle
+            //  Son durumda tüm araç bilgilerini temizle
             if (index > 0) {
                 System.out.println("SON ARAÇ ÇIKIYOR: " + fullPath.get(index-1) + "->" + fullPath.get(index));
                 g.decrementVehicle(fullPath.get(index-1), fullPath.get(index));
@@ -142,7 +142,7 @@ public class DestinationMaker {
         activeTransitions.add(transition);
 
         if(index == fullPath.size()-2) {
-            // ✅ SON ARAÇ DURUMU - Sadece görsel sil, graph temizliği cleanup()'ta
+            //  SON ARAÇ DURUMU - Sadece görsel sil, graph temizliği cleanup()'ta
             transition.setOnFinished(event -> {
                 // Görsel elementi sil
                 this.pane.getChildren().remove(car.getShape());
@@ -150,7 +150,7 @@ public class DestinationMaker {
                 // Graph temizliği
                 cleanup();
 
-                System.out.println("✅ Son araç tamamen temizlendi");
+                System.out.println("Son araç tamamen temizlendi");
             });
         }
         else{
@@ -178,12 +178,12 @@ public class DestinationMaker {
         transition.setCycleCount(1);
         transition.setAutoReverse(false);
 
-        activeTransitions.add(transition); // ✅ Sadece bu satırı ekle
+        activeTransitions.add(transition); //  Sadece bu satırı ekle
 
         transition.setOnFinished(event -> {
             syncGraphWithAnimation();
             if (currentEdgeIndex >= fullPath.size() - 1) {
-                cleanup(); // ✅ Bu satırı ekle
+                cleanup(); //  Bu satırı ekle
                 this.pane.getChildren().remove(car.getShape());
                 return;
             }
@@ -193,7 +193,7 @@ public class DestinationMaker {
     }
 
     private void cleanup() {
-        // ✅ ÖNCE graph'taki tüm bu araç için aktif edge'leri temizle
+        // ÖNCE graph'taki tüm bu araç için aktif edge'leri temizle
         for (int i = 0; i < fullPath.size() - 1; i++) {
             int from = fullPath.get(i);
             int to = fullPath.get(i + 1);
@@ -215,10 +215,6 @@ public class DestinationMaker {
         }
         activeTransitions.clear();
         activeTimelines.clear();
-    }
-
-    private boolean isIntersection(int nodeId) {
-        return nodeId == 8 || nodeId == 9 || nodeId == 10 || nodeId == 11;
     }
 
     private String getIntersectionName(int nodeId) {

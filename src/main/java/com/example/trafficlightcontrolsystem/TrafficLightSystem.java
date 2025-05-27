@@ -130,7 +130,7 @@ public class TrafficLightSystem {
         // En az 1 araç varsa o yönü seç, yoksa -1 döndür
         int result = maxTraffic > 0 ? busiestDirection : -1;
 
-        // ✅ BURAYI EKLE:
+        // BURAYI EKLE:
         if (result == -1) {
             result = random.nextInt(4); // 0-3 arası rastgele
         }
