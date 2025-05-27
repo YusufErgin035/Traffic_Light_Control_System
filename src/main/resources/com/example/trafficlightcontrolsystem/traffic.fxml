@@ -93,9 +93,6 @@
       <Line endX="843" endY="584" startX="814.3999633789062" startY="584" stroke="white" strokeWidth="2" />
       <!-- Alt yatay yol alt kenar -->
       <Line endX="812.0000610351562" endY="644" layoutY="-121.0" startX="783.2000122070312" startY="644" stroke="white" strokeWidth="2" />
-
-      <!-- Go Back Butonu -->
-      <Button layoutX="470.0" layoutY="660.0" mnemonicParsing="false" onAction="#switchToMainPage" text="Go Back" />
       <Line endX="89.99998474121094" endY="105.0" layoutX="90.0" layoutY="55.0" startX="119.59999084472656" startY="105.0" stroke="white" strokeWidth="2" />
       <Line endX="260" endY="130" layoutX="-128.0" layoutY="-2.0" startX="220" startY="130" stroke="white" strokeWidth="3" />
       <Line endX="260" endY="130" layoutX="-192.0" layoutY="-2.0" startX="220" startY="130" stroke="white" strokeWidth="3" />
@@ -117,7 +114,7 @@
       <Line endX="813" endY="150" layoutX="-632.0" layoutY="-127.0" startX="813.0000610351562" startY="130.59999084472656" stroke="white" strokeWidth="3" />
       <AnchorPane layoutY="166.0" prefHeight="356.0" prefWidth="153.0">
          <children>
-            <ImageView fitHeight="356.0" fitWidth="153.0" layoutX="-1.0">
+            <ImageView fitHeight="365.0" fitWidth="153.0" layoutX="-1.0" layoutY="-9.0">
                <image>
                   <Image url="@../../../images/1-1.png" />
                </image>
@@ -131,14 +128,14 @@
                </image>
             </ImageView>
          </children></AnchorPane>
-      <AnchorPane layoutX="210.0" layoutY="158.0" prefHeight="365.0" prefWidth="573.0">
+      <AnchorPane layoutX="209.0" layoutY="159.0" prefHeight="365.0" prefWidth="573.0">
          <children>
-            <ImageView fitHeight="356.0" fitWidth="285.0" layoutX="291.0" layoutY="5.0">
+            <ImageView fitHeight="370.0" fitWidth="285.0" layoutX="291.0">
                <image>
                   <Image url="@../../../images/1-7.jpg" />
                </image>
             </ImageView>
-            <ImageView fitHeight="356.0" fitWidth="291.0" layoutY="5.0">
+            <ImageView fitHeight="370.0" fitWidth="291.0">
                <image>
                   <Image url="@../../../images/1-6.jpg" />
                </image>
@@ -146,7 +143,7 @@
          </children></AnchorPane>
       <AnchorPane layoutX="210.0" layoutY="581.0" prefHeight="119.0" prefWidth="573.0">
          <children>
-            <ImageView fitHeight="113.0" fitWidth="573.0" layoutY="3.0">
+            <ImageView fitHeight="113.0" fitWidth="573.0">
                <image>
                   <Image url="@../../../images/1-8.jpg" />
                </image>
@@ -162,7 +159,7 @@
          </children></AnchorPane>
       <AnchorPane layoutX="845.0" layoutY="160.0" prefHeight="365.0" prefWidth="153.0">
          <children>
-            <ImageView fitHeight="365.0" fitWidth="158.0" layoutX="-5.0" layoutY="3.0">
+            <ImageView fitHeight="368.0" fitWidth="158.0" layoutX="-5.0">
                <image>
                   <Image url="@../../../images/1-11.jpg" />
                </image>
@@ -218,6 +215,9 @@
 
       <!-- Sol Üst -->
       <Circle fx:id="lu2" fill="red" layoutX="144.0" layoutY="84.0" radius="6" />
+
+      <!-- Go Back Butonu -->
+      <Button layoutX="470.0" layoutY="660.0" mnemonicParsing="false" onAction="#switchToMainPage" text="Go Back" />
 
    </children>
 
