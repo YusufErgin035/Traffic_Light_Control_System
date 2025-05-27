@@ -20,7 +20,6 @@ public class DestinationMaker {
     private AnchorPane pane;
     private List<Integer> fullPath;
     private TrafficLightSystem trafficSystem;
-    private int currentEdgeIndex = 0;
     private List<Timeline> activeTimelines = new ArrayList<>();
     private List<PathTransition> activeTransitions = new ArrayList<>();
 
@@ -61,6 +60,32 @@ public class DestinationMaker {
         }
         moveCarAlongEdge(edge, index);
     }
+
+    private void moveCarAlongEdge(Edge edge,int index) {
+        Line line = new Line(edge.fromX, edge.fromY, edge.toX, edge.toY);
+        PathTransition transition = new PathTransition();
+        transition.setDuration(Duration.seconds(edge.roadTime));
+        transition.setPath(line);
+        transition.setNode(this.car.getShape());
+        transition.setCycleCount(1);
+        transition.setAutoReverse(false);
+
+        activeTransitions.add(transition);
+
+        if(index == fullPath.size()-2) {
+            transition.setOnFinished(event -> {
+                // Görsel elementi sil
+                this.g.decrementVehicle(this.fullPath.get(index), this.fullPath.get(index+1));
+                this.pane.getChildren().remove(car.getShape());
+                System.out.println("Son araç tamamen temizlendi");
+            });
+        }
+        else{
+            transition.setOnFinished(event -> checkTrafficLightAndMove(fullPath,index,edge));
+        }
+        transition.play();
+    }
+
     private void checkTrafficLightAndMove(List<Integer> path, int index, Edge edge) {
         System.out.println("DEBUG: checkTrafficLightAndMove çağırıldı - index: " + index + ", path size: " + path.size());
         // Hangi kavşak ve hangi yön olduğunu bul
@@ -98,7 +123,7 @@ public class DestinationMaker {
                 this.car.setWaiting(true); // Araç bekleme durumuna geçiyor
 
                 Timeline waitTimeline = new Timeline(
-                        new KeyFrame(Duration.millis(500), e -> {
+                        new KeyFrame(Duration.millis(100), e -> {
                             this.car.setWaiting(false);
                             checkTrafficLightAndMove(path,index,edge);
                         })
@@ -112,30 +137,6 @@ public class DestinationMaker {
             // Intersection bulunamadı, normal hareket et
             moveCarAlongEdge(edge,index+1);
         }
-    }
-
-    private void moveCarAlongEdge(Edge edge,int index) {
-        Line line = new Line(edge.fromX, edge.fromY, edge.toX, edge.toY);
-        PathTransition transition = new PathTransition();
-        transition.setDuration(Duration.seconds(edge.roadTime));
-        transition.setPath(line);
-        transition.setNode(this.car.getShape());
-        transition.setCycleCount(1);
-        transition.setAutoReverse(false);
-
-        activeTransitions.add(transition);
-
-        if(index == fullPath.size()-2) {
-            transition.setOnFinished(event -> {
-                // Görsel elementi sil
-                this.pane.getChildren().remove(car.getShape());
-                System.out.println("Son araç tamamen temizlendi");
-            });
-        }
-        else{
-            transition.setOnFinished(event -> checkTrafficLightAndMove(fullPath,index,edge));
-        }
-        transition.play();
     }
 
     private String getIntersectionName(int nodeId) {
@@ -219,21 +220,5 @@ public class DestinationMaker {
         while (diff < -180) diff += 360;
 
         return diff > 0;
-    }
-
-    private void syncGraphWithAnimation() {
-        // Mevcut konumu graph'tan temizle
-        if (currentEdgeIndex > 0 && currentEdgeIndex < fullPath.size()) {
-            System.out.println("Araç çıkıyor: " + fullPath.get(currentEdgeIndex - 1) + "->" + fullPath.get(currentEdgeIndex));
-            g.decrementVehicle(fullPath.get(currentEdgeIndex - 1), fullPath.get(currentEdgeIndex));
-        }
-
-        // Yeni konuma kaydet
-        if (currentEdgeIndex + 1 < fullPath.size()) {
-            System.out.println("Araç giriyor: " + fullPath.get(currentEdgeIndex) + "->" + fullPath.get(currentEdgeIndex + 1));
-            g.incrementVehicle(fullPath.get(currentEdgeIndex), fullPath.get(currentEdgeIndex + 1));
-        }
-
-        currentEdgeIndex++;
     }
 }

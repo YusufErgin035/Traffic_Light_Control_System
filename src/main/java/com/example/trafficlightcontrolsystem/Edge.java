@@ -18,16 +18,12 @@ public class Edge {
         this.toX = toX;
         this.toY = toY;
     }
-    // Edge sınıfında bu metod nasıl implement edilmiş?
+
     public String calcLine() {
         int deltaX = Math.abs(toX - fromX);
         int deltaY = Math.abs(toY - fromY);
 
         return deltaX > deltaY ? "x" : "y";
-    }
-
-    public int getVehicleCount() {
-        return vehicleCount;
     }
 
     public void incrementVehicle() {
@@ -36,14 +32,5 @@ public class Edge {
 
     public void decrementVehicle() {
         vehicleCount--;
-    }
-
-    @Override
-    public String toString() {
-        return (to + 1) + "(araç:" + vehicleCount + ")";
-    }
-
-    public int getCost() {
-        return vehicleCount;
     }
 }

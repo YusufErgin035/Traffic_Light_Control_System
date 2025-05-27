@@ -53,7 +53,7 @@ public class TrafficLightSystem {
 
     private void startTrafficCycle() {
         trafficControlTimeline = new Timeline(
-                new KeyFrame(Duration.millis(100), e -> {
+                new KeyFrame(Duration.millis(500), e -> {
                     controlTrafficLights();
                 })
         );
@@ -161,15 +161,6 @@ public class TrafficLightSystem {
         if (lights != null && direction >= 0 && direction < lights.length) {
             lights[direction].setFill(Color.GREEN);
         }
-    }
-
-    private int getTrafficCount(String intersection, int direction) {
-        int[] incomingNodes = intersectionConnections.get(intersection);
-        int targetNode = getNodeIdFromIntersection(intersection);
-        int fromNode = incomingNodes[direction];
-
-        Edge edge = graph.getEdge(fromNode, targetNode);
-        return edge != null ? edge.vehicleCount : 0;
     }
 
     public boolean isLightGreen(String intersection, int direction) {

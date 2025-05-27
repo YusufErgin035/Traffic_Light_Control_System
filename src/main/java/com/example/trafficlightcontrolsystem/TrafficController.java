@@ -74,42 +74,32 @@ public class TrafficController {
 
     private void setupGraph() {
         // Kenar yollar (dış çevre)
-        g.addEdge(7,8,3,2,-30,140,120,140);      // Sol giriş -> Sol üst kavşak
-        g.addEdge(8,7,3,2,120,106,-30,106);      // Sol üst kavşak -> Sol çıkış
-        g.addEdge(0,8,2,2,155,-30,155,70);       // Üst giriş -> Sol üst kavşak
-        g.addEdge(8,0,2,2,187,70,187,-30);       // Sol üst kavşak -> Üst çıkış
-        g.addEdge(1,9,2,2,790,-30,790,70);       // Üst giriş -> Sağ üst kavşak
-        g.addEdge(9,1,2,2,822,70,822,-30);       // Sağ üst kavşak -> Üst çıkış
-        g.addEdge(2,9,3,2,1000,106,843,106);     // Sağ giriş -> Sağ üst kavşak
-        g.addEdge(9,2,3,2,843,140,1000,140);     // Sağ üst kavşak -> Sağ çıkış
-        g.addEdge(3,11,3,2,1000,533,843,533);    // Sağ giriş -> Sağ alt kavşak
-        g.addEdge(11,3,3,2,843,560,1000,560);    // Sağ alt kavşak -> Sağ çıkış
-        g.addEdge(4,11,3,2,822,700,822,584);     // Alt giriş -> Sağ alt kavşak
-        g.addEdge(11,4,3,2,790,584,790,700);     // Sağ alt kavşak -> Alt çıkış
-        g.addEdge(5,10,3,2,187,700,187,584);     // Alt giriş -> Sol alt kavşak
-        g.addEdge(10,5,3,2,155,584,155,700);     // Sol alt kavşak -> Alt çıkış
-        g.addEdge(6,10,3,2,-30,560,120,560);     // Sol giriş -> Sol alt kavşak
-        g.addEdge(10,6,3,2,120,533,-30,533);     // Sol alt kavşak -> Sol çıkış
+        g.addEdge(7,8,3,2,-18,145,132,145);      // Sol giriş -> Sol üst kavşak
+        g.addEdge(8,7,3,2,132,114,-18,114);      // Sol üst kavşak -> Sol çıkış
+        g.addEdge(0,8,2,2,164,-18,164,82);       // Üst giriş -> Sol üst kavşak
+        g.addEdge(8,0,2,2,195,82,195,-18);       // Sol üst kavşak -> Üst çıkış
+        g.addEdge(1,9,2,2,797,-18,797,82);       // Üst giriş -> Sağ üst kavşak
+        g.addEdge(9,1,2,2,829,82,829,-18);       // Sağ üst kavşak -> Üst çıkış
+        g.addEdge(2,9,3,2,1012,114,855,114);     // Sağ giriş -> Sağ üst kavşak
+        g.addEdge(9,2,3,2,855,145,1012,145);     // Sağ üst kavşak -> Sağ çıkış
+        g.addEdge(3,11,3,2,1012,536,855,536);    // Sağ giriş -> Sağ alt kavşak
+        g.addEdge(11,3,3,2,855,570,1012,570);    // Sağ alt kavşak -> Sağ çıkış
+        g.addEdge(4,11,3,2,829,712,829,596);     // Alt giriş -> Sağ alt kavşak
+        g.addEdge(11,4,3,2,797,596,797,712);     // Sağ alt kavşak -> Alt çıkış
+        g.addEdge(5,10,3,2,195,712,195,596);     // Alt giriş -> Sol alt kavşak
+        g.addEdge(10,5,3,2,164,596,164,712);     // Sol alt kavşak -> Alt çıkış
+        g.addEdge(6,10,3,2,-18,570,132,570);     // Sol giriş -> Sol alt kavşak
+        g.addEdge(10,6,3,2,132,536,-30,536);     // Sol alt kavşak -> Sol çıkış
 
         // Kavşaklar arası bağlantılar
-        g.addEdge(8,9,15,5,210,140,753,140);     // Sol üst -> Sağ üst (yatay)
-        g.addEdge(9,8,15,5,753,106,210,106);     // Sağ üst -> Sol üst (yatay)
-        g.addEdge(10,11,15,5,210,560,753,560);   // Sol alt -> Sağ alt (yatay)
-        g.addEdge(11,10,15,5,753,533,210,533);   // Sağ alt -> Sol alt (yatay)
-        g.addEdge(8,10,12,5,155,160,155,494);    // Sol üst -> Sol alt (dikey)
-        g.addEdge(10,8,12,5,187,494,187,160);    // Sol alt -> Sol üst (dikey)
-        g.addEdge(9,11,12,5,790,160,790,494);    // Sağ üst -> Sağ alt (dikey)
-        g.addEdge(11,9,12,5,822,494,822,160);    // Sağ alt -> Sağ üst (dikey)
-    }
-
-    private void animateCar(Rectangle car) {
-        TranslateTransition transition = new TranslateTransition();
-        transition.setNode(car);
-        transition.setDuration(Duration.seconds(1));
-        transition.setFromX(0);
-        transition.setToX(50);
-        transition.setAutoReverse(false);
-        transition.play();
+        g.addEdge(8,9,15,5,222,145,765,145);     // Sol üst -> Sağ üst (yatay)
+        g.addEdge(9,8,15,5,765,114,222,114);     // Sağ üst -> Sol üst (yatay)
+        g.addEdge(10,11,15,5,222,570,765,570);   // Sol alt -> Sağ alt (yatay)
+        g.addEdge(11,10,15,5,765,536,222,536);   // Sağ alt -> Sol alt (yatay)
+        g.addEdge(8,10,12,5,164,172,164,506);    // Sol üst -> Sol alt (dikey)
+        g.addEdge(10,8,12,5,195,506,195,172);    // Sol alt -> Sol üst (dikey)
+        g.addEdge(9,11,12,5,797,172,797,506);    // Sağ üst -> Sağ alt (dikey)
+        g.addEdge(11,9,12,5,829,506,829,172);    // Sağ alt -> Sağ üst (dikey)
     }
 
     public void switchToMainPage(ActionEvent e) throws IOException {

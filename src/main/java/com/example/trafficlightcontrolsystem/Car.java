@@ -2,7 +2,6 @@ package com.example.trafficlightcontrolsystem;
 
 import javafx.animation.PathTransition;
 import javafx.animation.RotateTransition;
-import javafx.animation.SequentialTransition;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.util.Duration;
@@ -45,60 +44,6 @@ public class Car {
         return shape;
     }
 
-    void moveX() {
-        shape.setTranslateX(shape.getTranslateX() + speed);
-    }
-
-    void moveY() {
-        shape.setTranslateY(shape.getTranslateY() + speed);
-    }
-
-    double getCurrentX() {
-        return shape.getLayoutX() + shape.getTranslateX();
-    }
-
-    /**
-     * Edge üzerinde hareket - açıyı edge yönüne göre ayarla
-     */
-    public void moveAlongEdge(Edge edge) {
-        // Edge'in gerçek açısını hesapla
-        double deltaX = edge.toX - edge.fromX;
-        double deltaY = edge.toY - edge.fromY;
-        double edgeAngle = Math.toDegrees(Math.atan2(deltaY, deltaX));
-
-        // Araç konumunu edge başlangıcına ayarla
-        shape.setLayoutX(edge.fromX);
-        shape.setLayoutY(edge.fromY);
-
-        // Eğer mevcut açı ile edge açısı çok farklıysa, önce döndür
-        double angleDifference = normalizeAngle(edgeAngle - currentAngle);
-
-        if (Math.abs(angleDifference) > 5) { // 5 derece tolerans
-            // Önce aracı doğru açıya döndür
-            RotateTransition rotateFirst = new RotateTransition();
-            rotateFirst.setDuration(Duration.seconds(0.2));
-            rotateFirst.setNode(shape);
-            rotateFirst.setFromAngle(currentAngle);
-            rotateFirst.setToAngle(edgeAngle);
-
-            rotateFirst.setOnFinished(e -> {
-                currentAngle = edgeAngle;
-                // Döndükten sonra hareket et
-                startMovement(edge);
-            });
-
-            rotateFirst.play();
-        } else {
-            // Açı farkı azsa direkt hareket et
-            shape.setRotate(edgeAngle);
-            currentAngle = edgeAngle;
-            startMovement(edge);
-        }
-    }
-
-    /**
-     * Edge üzerinde hareket animasyonu
-     */
     private void startMovement(Edge edge) {
         Line line = new Line(edge.fromX, edge.fromY, edge.toX, edge.toY);
 
@@ -113,20 +58,6 @@ public class Car {
         transition.play();
     }
 
-    public void cleanup() {
-        for(PathTransition pt : activePathTransitions) {
-            pt.stop();
-        }
-        for(RotateTransition rt : activeRotateTransitions) {
-            rt.stop();
-        }
-        activePathTransitions.clear();
-        activeRotateTransitions.clear();
-    }
-
-    /**
-     * Kavşak dönüşü - yumuşak geçiş
-     */
     public void arcTurn(boolean clockwise) {
         // Mevcut konum
         double currentX = shape.getLayoutX() + shape.getTranslateX();
@@ -164,9 +95,6 @@ public class Car {
         rotateTransition.play();
     }
 
-    /**
-     * Arc path oluştur
-     */
     private Path createArcPath(double startX, double startY, double radius, boolean clockwise) {
         // Mevcut yöne göre arc merkezi hesapla
         double radians = Math.toRadians(currentAngle);
@@ -205,9 +133,6 @@ public class Car {
         return path;
     }
 
-    /**
-     * Açıyı -180 ile +180 arasına normalize et
-     */
     private double normalizeAngle(double angle) {
         while (angle > 180) angle -= 360;
         while (angle < -180) angle += 360;

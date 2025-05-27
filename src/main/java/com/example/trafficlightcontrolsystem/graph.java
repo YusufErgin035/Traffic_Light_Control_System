@@ -46,33 +46,6 @@ public class graph {
         }
         System.out.println("Kenar bulunamadı: " + from + " -> " + to);
     }
-    public int getMaxVehicle(int from,int to) {
-        for (Edge edge : adjList[from]) {
-            if (edge.to == to) {
-                return edge.vehicleMax;
-            }
-        }
-        return -1;
-    }
-    public int getRoadTime(int from,int to) {
-        for (Edge edge : adjList[from]) {
-            if (edge.to == to) {
-                return edge.roadTime;
-            }
-        }
-        return -1;
-    }
-
-    public void printGraph() {
-        System.out.println("Komşuluk Listesi:");
-        for (int i = 0; i < numVertices; i++) {
-            System.out.print((i + 1) + ": ");
-            for (Edge edge : adjList[i]) {
-                System.out.print(edge + " ");
-            }
-            System.out.println();
-        }
-    }
 
     public List<Integer> dijkstra(int start, int end) {
         int[] distance = new int[numVertices];
