@@ -23,6 +23,7 @@ public class MainController {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("traffic.fxml")));
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         scene = new Scene(root);
+        stage.setTitle("Traffic Light Control System");
         stage.setWidth(1011);
         stage.setHeight(735);
         stage.setScene(scene);

@@ -117,6 +117,7 @@ public class TrafficController {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("anasayfa.fxml")));
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         scene = new Scene(root);
+        stage.setTitle("Mrbasko!");
         stage.setWidth(600);
         stage.setHeight(400);
         stage.setScene(scene);

@@ -15,7 +15,7 @@ public class MainApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("anasayfa.fxml"));
         Font.loadFont(Objects.requireNonNull(getClass().getResource("/fonts/impact.ttf")).toExternalForm(), 36);
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-        stage.setTitle("Traffic Light Control System");
+        stage.setTitle("Mrbasko!");
         stage.setScene(scene);
         stage.show();
     }
