@@ -14,18 +14,120 @@
 
       <!-- Arka plan: çimen -->
       <Rectangle fill="#44aa44" height="700.0" width="1000.0" />
+      <AnchorPane layoutX="210.0" layoutY="1.0" prefHeight="100.0" prefWidth="573.0">
+         <children>
+            <ImageView fitHeight="100.0" fitWidth="578.0" layoutX="-1.0">
+               <image>
+                  <Image url="@../../../images/1-10.jpg" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
+      <AnchorPane layoutX="844.0" layoutY="-2.0" prefHeight="100.0" prefWidth="147.0">
+         <children>
+            <ImageView fitHeight="107.0" fitWidth="158.0" layoutX="-2.0">
+               <image>
+                  <Image url="@../../../images/1-12.jpg" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
+      <AnchorPane layoutX="845.0" layoutY="584.0" prefHeight="113.0" prefWidth="153.0">
+         <children>
+            <ImageView fitHeight="116.0" fitWidth="160.0" layoutX="-5.0">
+               <image>
+                  <Image url="@../../../images/1-14.jpg" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
+      <AnchorPane layoutY="581.0" prefHeight="119.0" prefWidth="153.0">
+         <children>
+            <ImageView fitHeight="115.0" fitWidth="153.0" layoutX="2.0" layoutY="4.0">
+               <image>
+                  <Image url="@../../../images/1-3.png" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
+      <AnchorPane layoutX="845.0" layoutY="160.0" prefHeight="365.0" prefWidth="153.0">
+         <children>
+            <ImageView fitHeight="373.0" fitWidth="155.0" layoutX="-2.0" layoutY="-1.0">
+               <image>
+                  <Image url="@../../../images/1-11.jpg" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
+      <AnchorPane layoutY="1.0" prefHeight="100.0" prefWidth="153.0">
+         <children>
+            <ImageView fitHeight="100.0" fitWidth="153.0">
+               <image>
+                  <Image url="@../../../images/1-13.jpg" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
+      <AnchorPane layoutX="210.0" layoutY="581.0" prefHeight="119.0" prefWidth="573.0">
+         <children>
+            <ImageView fitHeight="116.0" fitWidth="573.0" layoutY="3.0">
+               <image>
+                  <Image url="@../../../images/1-8.jpg" />
+               </image>
+            </ImageView>
+            <Button layoutX="250.0" layoutY="78.0" mnemonicParsing="false" onAction="#switchToMainPage" prefHeight="26.0" prefWidth="73.0" style="-fx-background-color: #3498db; -fx-background-radius: 25;" text="Go Back" textFill="WHITE" />
+         </children></AnchorPane>
+      <AnchorPane layoutX="210.0" layoutY="158.0" prefHeight="365.0" prefWidth="573.0">
+         <children>
+            <ImageView fitHeight="371.0" fitWidth="285.0" layoutX="291.0" layoutY="-1.0">
+               <image>
+                  <Image url="@../../../images/1-7.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="371.0" fitWidth="291.0" layoutY="-1.0">
+               <image>
+                  <Image url="@../../../images/1-6.jpg" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
+      <AnchorPane layoutY="166.0" prefHeight="356.0" prefWidth="153.0">
+         <children>
+            <ImageView fitHeight="369.0" fitWidth="153.0" layoutY="-10.0">
+               <image>
+                  <Image url="@../../../images/1-1.png" />
+               </image>
+            </ImageView>
+            <Line endX="503.0" endY="-21.400001525878906" layoutX="-355.0" layoutY="379.0" startX="354.3000183105469" startY="-21.400001525878906" />
+         </children></AnchorPane>
 
       <!-- Yollar: ortada birleşen yollar -->
       <Rectangle fill="#555555" height="700.0" layoutX="150.0" width="60" />
       <Rectangle fill="#555555" height="700.0" layoutX="783.0" width="60" /> <!-- Dikey yol -->
       <Rectangle fill="#555555" height="60" layoutY="100.0" width="1000.0" /> <!-- Yatay yol -->
-      <Rectangle fill="#555555" height="60" layoutY="524.0" width="1000.0" /> <!-- Alt yatay yol -->
+      <Rectangle fill="#555555" height="60" layoutX="-3.0" layoutY="525.0" width="1000.0" /> <!-- Alt yatay yol -->
 
       <!-- Kavşak merkez kareleri -->
       <Rectangle fill="#888888" height="60" layoutX="150" layoutY="100" width="60" /> <!-- Sol Üst -->
       <Rectangle fill="#888888" height="60" layoutX="783.0" layoutY="100.0" width="60" /> <!-- Sağ Üst -->
       <Rectangle fill="#888888" height="60" layoutX="150.0" layoutY="524.0" width="60" /> <!-- Sol Alt -->
       <Rectangle fill="#888888" height="60" layoutX="783.0" layoutY="524.0" width="60" />
+      <Line endX="513.0000610351562" endY="49.0" layoutX="329.0" layoutY="111.0" startX="513.7000122070312" startY="411.800048828125" />
+      <Line endX="513.0000610351562" endY="49.0" layoutX="-305.0" layoutY="111.0" startX="513.7000122070312" startY="411.800048828125" />
+      <Line endX="513.0000610351562" endY="49.0" layoutX="-363.0" layoutY="111.0" startX="513.7000122070312" startY="411.800048828125" />
+      <Line endX="503.0" endY="-21.400001525878906" layoutX="-353.0" layoutY="121.0" startX="354.3000183105469" startY="-21.400001525878906" />
+      <Line endX="503.0" endY="-21.400001525878906" layoutX="-354.0" layoutY="180.0" startX="354.3000183105469" startY="-21.400001525878906" />
+      <Line endX="504.0" endY="-21.400001525878906" layoutX="-355.0" layoutY="604.0" startX="354.3000183105469" startY="-21.400001525878906" />
+      <Line endX="508.0" endY="-21.99999237060547" layoutX="492.0" layoutY="122.0" startX="352.0" startY="-21.99999237060547" />
+      <Line endX="510.0" endY="-19.0" layoutX="490.0" layoutY="179.0" startX="353.4071044921875" startY="-19.707107543945312" />
+      <Line endX="508.0" endY="-21.99999237060547" layoutX="488.0" layoutY="547.0" startX="355.4071044921875" startY="-21.99999237060547" />
+      <Line endX="508.0" endY="-21.99999237060547" layoutX="487.0" layoutY="606.0" startX="355.4071044921875" startY="-21.99999237060547" />
+      <Line endX="345.0" endY="84.0" layoutX="497.0" layoutY="616.0" startX="345.0" startY="-32.0" />
+      <Line endX="346.0" endY="84.0" layoutX="-135.0" layoutY="615.0" startX="346.0" startY="-30.0" />
+      <Line endX="342.0" endY="84.0" layoutX="441.0" layoutY="614.0" startX="342.0" startY="-28.0" />
+      <Line endX="346.0" endY="84.0" layoutX="-195.0" layoutY="614.0" startX="346.0" startY="-30.0" />
+      <Line endX="346.0" endY="73.0999984741211" layoutX="-196.0" layoutY="26.0" startX="346.0" startY="-24.000001907348633" />
+      <Line endX="347.0" endY="73.0999984741211" layoutX="-138.0" layoutY="26.0" startX="347.0" startY="-24.000001907348633" />
+      <Line endX="345.0" endY="73.0999984741211" layoutX="439.0" layoutY="26.0" startX="345.0" startY="-24.000001907348633" />
+      <Line endX="346.0" endY="77.50000762939453" layoutX="497.0" layoutY="22.0" startX="346.0" startY="-24.000001907348633" />
+      <Line endX="520.9000854492188" layoutX="262.0" layoutY="526.0" startX="-51.100006103515625" />
+      <Line endX="521.7000122070312" layoutX="260.0" layoutY="101.0" startX="-51.100006103515625" />
+      <Line endX="513.0000610351562" endY="49.0" layoutX="270.0" layoutY="111.0" startX="513.7000122070312" startY="411.800048828125" />
+      <Line endX="521.7000122070312" layoutX="261.0" layoutY="159.0" startX="-51.100006103515625" />
+      <Line endX="521.7000122070312" layoutX="261.0" layoutY="585.0" startX="-47.699981689453125" />
       <Line endX="180" endY="210" startX="180" startY="170" stroke="white" strokeWidth="3" />
       <Line endX="180" endY="270" startX="180" startY="230" stroke="white" strokeWidth="3" />
       <Line endX="180" endY="330" startX="180" startY="290" stroke="white" strokeWidth="3" />
@@ -93,9 +195,6 @@
       <Line endX="843" endY="584" startX="814.3999633789062" startY="584" stroke="white" strokeWidth="2" />
       <!-- Alt yatay yol alt kenar -->
       <Line endX="812.0000610351562" endY="644" layoutY="-121.0" startX="783.2000122070312" startY="644" stroke="white" strokeWidth="2" />
-
-      <!-- Go Back Butonu -->
-      <Button layoutX="470.0" layoutY="660.0" mnemonicParsing="false" onAction="#switchToMainPage" text="Go Back" />
       <Line endX="89.99998474121094" endY="105.0" layoutX="90.0" layoutY="55.0" startX="119.59999084472656" startY="105.0" stroke="white" strokeWidth="2" />
       <Line endX="260" endY="130" layoutX="-128.0" layoutY="-2.0" startX="220" startY="130" stroke="white" strokeWidth="3" />
       <Line endX="260" endY="130" layoutX="-192.0" layoutY="-2.0" startX="220" startY="130" stroke="white" strokeWidth="3" />
@@ -115,101 +214,40 @@
       <Line endX="920" endY="554" layoutX="77.0" layoutY="-424.0" startX="910.5" startY="554" stroke="white" strokeWidth="3" />
       <Line endX="813" endY="150" layoutX="-632.0" layoutY="-63.0" startX="813" startY="110" stroke="white" strokeWidth="3" />
       <Line endX="813" endY="150" layoutX="-632.0" layoutY="-127.0" startX="813.0000610351562" startY="130.59999084472656" stroke="white" strokeWidth="3" />
-      <AnchorPane layoutY="166.0" prefHeight="356.0" prefWidth="153.0">
-         <children>
-            <ImageView fitHeight="356.0" fitWidth="153.0" layoutX="-1.0">
-               <image>
-                  <Image url="@../../../images/1-1.png" />
-               </image>
-            </ImageView>
-         </children></AnchorPane>
-      <AnchorPane layoutY="581.0" prefHeight="119.0" prefWidth="153.0">
-         <children>
-            <ImageView fitHeight="113.0" fitWidth="153.0" layoutX="2.0" layoutY="4.0">
-               <image>
-                  <Image url="@../../../images/1-3.png" />
-               </image>
-            </ImageView>
-         </children></AnchorPane>
-      <AnchorPane layoutX="210.0" layoutY="158.0" prefHeight="365.0" prefWidth="573.0">
-         <children>
-            <ImageView fitHeight="356.0" fitWidth="285.0" layoutX="291.0" layoutY="5.0">
-               <image>
-                  <Image url="@../../../images/1-7.jpg" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="356.0" fitWidth="291.0" layoutY="5.0">
-               <image>
-                  <Image url="@../../../images/1-6.jpg" />
-               </image>
-            </ImageView>
-         </children></AnchorPane>
-      <AnchorPane layoutX="210.0" layoutY="581.0" prefHeight="119.0" prefWidth="573.0">
-         <children>
-            <ImageView fitHeight="113.0" fitWidth="573.0" layoutY="3.0">
-               <image>
-                  <Image url="@../../../images/1-8.jpg" />
-               </image>
-            </ImageView>
-         </children></AnchorPane>
-      <AnchorPane layoutX="210.0" layoutY="1.0" prefHeight="100.0" prefWidth="573.0">
-         <children>
-            <ImageView fitHeight="100.0" fitWidth="567.0" layoutX="3.0">
-               <image>
-                  <Image url="@../../../images/1-10.jpg" />
-               </image>
-            </ImageView>
-         </children></AnchorPane>
-      <AnchorPane layoutX="845.0" layoutY="160.0" prefHeight="365.0" prefWidth="153.0">
-         <children>
-            <ImageView fitHeight="365.0" fitWidth="158.0" layoutX="-5.0" layoutY="3.0">
-               <image>
-                  <Image url="@../../../images/1-11.jpg" />
-               </image>
-            </ImageView>
-         </children></AnchorPane>
-      <AnchorPane layoutX="844.0" layoutY="-2.0" prefHeight="100.0" prefWidth="147.0">
-         <children>
-            <ImageView fitHeight="100.0" fitWidth="158.0" layoutX="-2.0">
-               <image>
-                  <Image url="@../../../images/1-12.jpg" />
-               </image>
-            </ImageView>
-         </children></AnchorPane>
-      <AnchorPane layoutY="1.0" prefHeight="100.0" prefWidth="153.0">
-         <children>
-            <ImageView fitHeight="100.0" fitWidth="153.0">
-               <image>
-                  <Image url="@../../../images/1-13.jpg" />
-               </image>
-            </ImageView>
-         </children></AnchorPane>
-      <AnchorPane layoutX="845.0" layoutY="584.0" prefHeight="113.0" prefWidth="153.0">
-         <children>
-            <ImageView fitHeight="113.0" fitWidth="153.0">
-               <image>
-                  <Image url="@../../../images/1-14.jpg" />
-               </image>
-            </ImageView>
-         </children></AnchorPane>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#343a40" height="20.0" layoutX="134.0" layoutY="74.0" stroke="#00000069" strokeType="INSIDE" width="20.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#343a40" height="20.0" layoutX="124.0" layoutY="156.0" stroke="#00000069" strokeType="INSIDE" width="20.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#343a40" height="20.0" layoutX="206.0" layoutY="592.0" stroke="#00000069" strokeType="INSIDE" width="20.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#343a40" height="20.0" layoutX="767.0" layoutY="74.0" stroke="#00000069" strokeType="INSIDE" width="20.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#343a40" height="20.0" layoutX="755.0" layoutY="156.0" stroke="#00000069" strokeType="INSIDE" width="20.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#343a40" height="20.0" layoutX="851.0" layoutY="84.0" stroke="#00000069" strokeType="INSIDE" width="20.0" />
       <Circle fx:id="lu1" fill="red" layoutX="134.0" layoutY="166.0" radius="6" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#343a40" height="20.0" layoutX="206.0" layoutY="168.0" stroke="#00000069" strokeType="INSIDE" width="20.0" />
       <Circle fx:id="lu3" fill="red" layoutX="216.0" layoutY="178.0" radius="6" />
 
       <!-- Sağ Üst -->
       <Circle fx:id="ru2" fill="red" layoutX="777.0" layoutY="84.0" radius="6" />
       <Circle fx:id="ru4" fill="red" layoutX="861.0" layoutY="94.0" radius="6" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#343a40" height="20.0" layoutX="839.0" layoutY="168.0" stroke="#00000069" strokeType="INSIDE" width="20.0" />
       <Circle fx:id="ru3" fill="red" layoutX="849.0" layoutY="178.0" radius="6" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#343a40" height="20.0" layoutX="218.0" layoutY="84.0" stroke="#00000069" strokeType="INSIDE" width="20.0" />
       <Circle fx:id="ru1" fill="red" layoutX="765.0" layoutY="166.0" radius="6" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#343a40" height="20.0" layoutX="134.0" layoutY="496.0" stroke="#00000069" strokeType="INSIDE" width="20.0" />
 
       <!-- Sol Alt -->
       <Circle fx:id="ld2" fill="red" layoutX="144.0" layoutY="506.0" radius="6" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#343a40" height="20.0" layoutX="216.0" layoutY="508.0" stroke="#00000069" strokeType="INSIDE" width="20.0" />
       <Circle fx:id="ld4" fill="red" layoutX="226.0" layoutY="518.0" radius="6" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#343a40" height="20.0" layoutX="124.0" layoutY="580.0" stroke="#00000069" strokeType="INSIDE" width="20.0" />
       <Circle fx:id="ld1" fill="red" layoutX="134.0" layoutY="590.0" radius="6" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#343a40" height="20.0" layoutX="767.0" layoutY="496.0" stroke="#00000069" strokeType="INSIDE" width="20.0" />
       <Circle fx:id="ld3" fill="red" layoutX="216.0" layoutY="602.0" radius="6" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#343a40" height="20.0" layoutX="851.0" layoutY="508.0" stroke="#00000069" strokeType="INSIDE" width="20.0" />
 
       <!-- Sağ Alt -->
       <Circle fx:id="rd2" fill="red" layoutX="777.0" layoutY="506.0" radius="6" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#343a40" height="20.0" layoutX="755.0" layoutY="579.0" stroke="#00000069" strokeType="INSIDE" width="20.0" />
       <Circle fx:id="rd4" fill="red" layoutX="861.0" layoutY="518.0" radius="6" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#343a40" height="20.0" layoutX="839.0" layoutY="592.0" stroke="#00000069" strokeType="INSIDE" width="20.0" />
       <Circle fx:id="rd1" fill="red" layoutX="765.0" layoutY="590.0" radius="6" />
       <Circle fx:id="rd3" fill="red" layoutX="849.0" layoutY="602.0" radius="6" />
       <Circle fx:id="lu4" fill="red" layoutX="228.0" layoutY="94.0" radius="6" />
