@@ -1,8 +1,8 @@
-# Traffic Light Control System
+# 🚦Traffic Light Control System
 
 Bu proje, JavaFX kullanılarak geliştirilmiş akıllı bir trafik ışığı kontrol sistemi simülasyonudur. Sistem, gerçek zamanlı trafik yoğunluğuna göre dinamik olarak trafik ışıklarını kontrol eder.
 
-## 🚦 Özellikler
+##  Özellikler
 
 - **Akıllı Trafik Kontrolü**: Sistem, her kavşaktaki araç yoğunluğunu analiz ederek en yoğun yöne yeşil ışık verir
 - **Gerçek Zamanlı Simülasyon**: Araçlar rastgele başlangıç ve bitiş noktaları ile otomatik olarak oluşturulur
@@ -10,7 +10,7 @@ Bu proje, JavaFX kullanılarak geliştirilmiş akıllı bir trafik ışığı ko
 - **Animasyonlu Araç Hareketi**: Araçlar gerçekçi yol takibi ve dönüş animasyonları ile hareket eder
 - **Çoklu Kavşak Sistemi**: 4 farklı kavşağın eş zamanlı kontrolü
 
-## 🏗️ Sistem Mimarisi
+##  Sistem Mimarisi
 
 ### Ana Bileşenler
 
@@ -31,7 +31,7 @@ Sistem 4 ana kavşağa sahiptir:
 
 Her kavşakta 4 yönden gelen trafik için ayrı ışıklar bulunur.
 
-## 🚀 Kurulum ve Çalıştırma
+##  Kurulum ve Çalıştırma
 
 ### Gereksinimler
 
@@ -63,7 +63,7 @@ mvn javafx:run
 java -cp target/classes --module-path /path/to/javafx/lib --add-modules javafx.controls,javafx.fxml com.example.trafficlightcontrolsystem.MainApplication
 ```
 
-## 🎮 Kullanım
+##  Kullanım
 
 1. **Ana Ekran**: Uygulamayı başlattığınızda "This is Life" yazılı ana ekran görünür
 2. **Simülasyon**: Ana ekrana tıklayarak trafik simülasyonu ekranına geçin
@@ -73,7 +73,7 @@ java -cp target/classes --module-path /path/to/javafx/lib --add-modules javafx.c
    - Her 5 saniyede trafik ışıklarını günceller
 4. **Geri Dönüş**: "Go Back" butonu ile ana ekrana dönebilirsiniz
 
-## 🧠 Algoritma Detayları
+##  Algoritma Detayları
 
 ### Trafik Işığı Algoritması
 
@@ -116,19 +116,19 @@ src/main/resources/com/example/trafficlightcontrolsystem/
 └── traffic.fxml                  # Trafik simülasyonu UI
 ```
 
-## 🎯 Teknik Özellikler
+##  Teknik Özellikler
 
 - **Multithreaded Animation**: Birden fazla araç eş zamanlı hareket eder
 - **Memory Management**: Araçlar simülasyondan çıktığında otomatik temizlenir
 - **Real-time Graph Updates**: Graf yapısı gerçek zamanlı güncellenir
 - **Collision Avoidance**: Aynı yolda araç sayısı sınırlandırılır
 
-## 🐛 Bilinen Sorunlar
+##  Bilinen Sorunlar
 
 - Çok yoğun trafik durumunda bazı araçlar uzun süre bekleyebilir
 - Sistem kapatılırken animasyonların tamamen durması birkaç saniye alabilir
 
-## 🤝 Katkıda Bulunma
+##  Katkıda Bulunma
 
 1. Fork yapın
 2. Feature branch oluşturun (`git checkout -b feature/AmazingFeature`)
@@ -136,17 +136,11 @@ src/main/resources/com/example/trafficlightcontrolsystem/
 4. Branch'inizi push edin (`git push origin feature/AmazingFeature`)
 5. Pull Request oluşturun
 
-## 📄 Lisans
+##  Lisans
 
 Bu proje MIT lisansı altında lisanslanmıştır. Detaylar için `LICENSE` dosyasına bakınız.
 
-## 👨‍💻 Geliştiriciler
+##  Geliştiriciler
 
-- Proje geliştiricisi: [Your Name]
-- İletişim: [your-email@example.com]
-
-## 📚 Referanslar
-
-- [JavaFX Documentation](https://openjfx.io/)
-- [Dijkstra Algorithm](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)
-- [Graph Theory](https://en.wikipedia.org/wiki/Graph_theory)
+- Proje geliştiricisi: Muhammed Emin Dinç, Yusuf Tunahan Ergin
+- İletişim: emindinc@marun.edu.tr

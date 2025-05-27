@@ -15,12 +15,10 @@ public class MainApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("anasayfa.fxml"));
         Font.loadFont(Objects.requireNonNull(getClass().getResource("/fonts/impact.ttf")).toExternalForm(), 36);
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-        stage.setTitle("Mrb!");
+        stage.setTitle("Traffic Light Control System");
         stage.setScene(scene);
         stage.show();
     }
 
-    public static void main(String[] args) {
-        launch();
-    }
+    public static void main(String[] args) {launch();}
 }

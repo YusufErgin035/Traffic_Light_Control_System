@@ -14,8 +14,10 @@
             <Image url="@../../../images/damn.jpg" />
          </image>
       </ImageView>
-      <Label alignment="CENTER" layoutX="51.0" layoutY="229.0" prefHeight="163.0" prefWidth="498.0" style="-fx-effect: dropshadow(one-pass-box, black, 2, 0, 0, 0); -fx-font-family: impact; -fx-font-size: 80; -fx-text-fill: white;" text="This is Life" textFill="WHITE" textOverrun="CLIP">
-      </Label>
+      <Label alignment="CENTER" layoutX="51.0" layoutY="229.0" prefHeight="163.0" prefWidth="498.0" style="-fx-effect: dropshadow(one-pass-box, black, 2, 0, 0, 0); -fx-font-family: impact; -fx-font-size: 80; -fx-text-fill: white;" text="Traffic Lights Control System" textFill="WHITE" textOverrun="CLIP">
+         <font>
+            <Font size="7.0" />
+         </font></Label>
      <Button alignment="CENTER" contentDisplay="TOP" layoutX="51.0" layoutY="229.0" onAction="#switchToTrafficPage" opacity="0.0" prefHeight="163.0" prefWidth="498.0" textAlignment="CENTER">
          <font>
             <Font name="Comic Sans MS" size="68.0" />
