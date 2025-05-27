@@ -26,6 +26,9 @@ public class Edge {
         return deltaX > deltaY ? "x" : "y";
     }
 
+    public int getVehicleCount() {
+        return vehicleCount;
+    }
 
     public void incrementVehicle() {
         vehicleCount++;

@@ -10,15 +10,15 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
-import java.util.Random;
 
 public class TrafficController {
     @FXML private Stage stage;
@@ -30,13 +30,13 @@ public class TrafficController {
     @FXML private Circle ld1, ld2, ld3, ld4;
     @FXML private Circle rd1, rd2, rd3, rd4;
 
+    private List<Car> cars = new ArrayList<>();
     private TrafficLightSystem trafficLightSystem;
     private graph g;
     private Timeline carGenerationTimeline;
     private boolean trafficSystemReady = false;
 
     public void initialize() {
-        Random rand = new Random();
         g = new graph(12);
 
         // Graph'ı oluştur
