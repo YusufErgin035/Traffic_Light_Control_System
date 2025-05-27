@@ -39,7 +39,7 @@ public class DestinationMaker {
         }while(edge.vehicleCount+1>edge.vehicleMax);
         // İlk edge'in vehicle count'ını artır (araç yola çıkıyor)
         if (this.fullPath.size() > 1) {
-            System.out.println("YENİ ARAÇ: " + this.fullPath.get(0) + "->" + this.fullPath.get(1));
+            //System.out.println("YENİ ARAÇ: " + this.fullPath.get(0) + "->" + this.fullPath.get(1));
             g.incrementVehicle(this.fullPath.get(0), this.fullPath.get(1));
         }
         double red = rand.nextDouble();
@@ -99,7 +99,7 @@ public class DestinationMaker {
         if (intersection != null && direction != -1) {
             // Işık kontrolü yap
             if (isLightGreen(intersection, direction)) {
-                System.out.println("Yeşil ışık - araç geçiyor");
+                //System.out.println("Yeşil ışık - araç geçiyor");
                 // Yeşil ışık - geç
                 this.g.decrementVehicle(path.get(index), path.get(index+1));
                 this.g.incrementVehicle(path.get(index + 1), path.get(index + 2));
@@ -113,7 +113,7 @@ public class DestinationMaker {
                 }
                 moveCarAlongPath(index+1);
             } else {
-                System.out.println("Kırmızı ışık - araç bekliyor");
+                //System.out.println("Kırmızı ışık - araç bekliyor");
                 // Kırmızı ışık - bekle ve tekrar kontrol et
                 if (this.car.isWaiting()) {
                     // Araç zaten bekliyorsa yeni bir Timeline başlatma
@@ -133,7 +133,7 @@ public class DestinationMaker {
                 waitTimeline.play();
             }
         } else {
-            System.out.println("Intersection bulunamadı - normal hareket");
+            //System.out.println("Intersection bulunamadı - normal hareket");
             // Intersection bulunamadı, normal hareket et
             moveCarAlongEdge(edge,index+1);
         }

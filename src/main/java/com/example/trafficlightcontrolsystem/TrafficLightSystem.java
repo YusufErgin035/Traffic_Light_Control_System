@@ -53,7 +53,7 @@ public class TrafficLightSystem {
 
     private void startTrafficCycle() {
         trafficControlTimeline = new Timeline(
-                new KeyFrame(Duration.millis(500), e -> {
+                new KeyFrame(Duration.millis(1000), e -> {
                     controlTrafficLights();
                 })
         );
