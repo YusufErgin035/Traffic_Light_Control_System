@@ -121,6 +121,9 @@ public class TrafficController {
             carGenerationTimeline.stop();
         }
 
+        //Ana ekrana dönüş yaparken mevcut araçları temizle
+        mainPane.getChildren().removeIf(node -> node instanceof javafx.scene.shape.Rectangle);
+
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("anasayfa.fxml")));
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         scene = new Scene(root);

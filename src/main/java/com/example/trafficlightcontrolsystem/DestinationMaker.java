@@ -139,20 +139,18 @@ public class DestinationMaker {
         transition.setCycleCount(1);
         transition.setAutoReverse(false);
 
-        activeTransitions.add(transition); // ✅ Timeline'ı takip et
+        activeTransitions.add(transition);
 
-        if(index==fullPath.size()-2) {
+        if(index == fullPath.size()-2) {
+            // ✅ SON ARAÇ DURUMU - Sadece görsel sil, graph temizliği cleanup()'ta
             transition.setOnFinished(event -> {
-                // ✅ ÖNCE graph'tan sil
-                this.g.decrementVehicle(this.fullPath.get(fullPath.size()-2),this.fullPath.get(fullPath.size()-1));
-
-                // ✅ SONRA timeline temizle
-                cleanup();
-
-                // ✅ EN SON görsel sil
+                // Görsel elementi sil
                 this.pane.getChildren().remove(car.getShape());
 
-                System.out.println("Araç tamamen temizlendi");
+                // Graph temizliği
+                cleanup();
+
+                System.out.println("✅ Son araç tamamen temizlendi");
             });
         }
         else{
@@ -195,6 +193,18 @@ public class DestinationMaker {
     }
 
     private void cleanup() {
+        // ✅ ÖNCE graph'taki tüm bu araç için aktif edge'leri temizle
+        for (int i = 0; i < fullPath.size() - 1; i++) {
+            int from = fullPath.get(i);
+            int to = fullPath.get(i + 1);
+            Edge edge = g.getEdge(from, to);
+            if (edge != null && edge.vehicleCount > 0) {
+                System.out.println("🧹 CLEANUP: Edge " + from + "->" + to + " temizleniyor (" + edge.vehicleCount + " -> " + (edge.vehicleCount - 1) + ")");
+                edge.vehicleCount--;
+            }
+        }
+
+        // Sonra animasyonları temizle
         car.cleanup();
 
         for(PathTransition pt : activeTransitions) {

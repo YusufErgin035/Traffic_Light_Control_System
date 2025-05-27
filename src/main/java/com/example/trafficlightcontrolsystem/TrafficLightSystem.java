@@ -103,34 +103,6 @@ public class TrafficLightSystem {
         }
     }
 
-    /*private void cleanupGhostVehicles() {
-        for(int i = 0; i < 12; i++) {
-            for(int j = 0; j < 12; j++) {
-                Edge edge = graph.getEdge(i, j);
-                if(edge != null) {
-                    // Hayalet araçları temizle
-                    if(edge.vehicleCount > edge.vehicleMax) {
-                        edge.vehicleCount = edge.vehicleMax;
-                    }
-                    if(edge.vehicleCount < 0) {
-                        edge.vehicleCount = 0;
-                    }
-                }
-            }
-        }
-    }*/
-
-    private void resetAllVehicleCounts() {
-        for(int i = 0; i < 12; i++) {
-            for(int j = 0; j < 12; j++) {
-                Edge edge = graph.getEdge(i, j);
-                if(edge != null && edge.vehicleCount < 0) {
-                    edge.vehicleCount = 0; // Negatif sayıları sıfırla
-                }
-            }
-        }
-    }
-
     private int findBusiestDirectionAtIntersection(String intersection) {
         int[] incomingNodes = intersectionConnections.get(intersection);
         int targetNode = getNodeIdFromIntersection(intersection);
