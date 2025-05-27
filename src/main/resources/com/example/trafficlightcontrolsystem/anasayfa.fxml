@@ -14,7 +14,7 @@
             <Image url="@../../../images/damn.jpg" />
          </image>
       </ImageView>
-      <Label alignment="CENTER" layoutX="51.0" layoutY="229.0" prefHeight="163.0" prefWidth="498.0" style="-fx-effect: dropshadow(one-pass-box, black, 2, 0, 0, 0); -fx-font-family: impact; -fx-font-size: 80; -fx-text-fill: white;" text="Traffic Lights Control System" textFill="WHITE" textOverrun="CLIP">
+      <Label alignment="CENTER" layoutY="229.0" prefHeight="163.0" prefWidth="820.0" style="-fx-effect: dropshadow(one-pass-box, black, 2, 0, 0, 0); -fx-font-family: impact; -fx-font-size: 80; -fx-text-fill: white;" text="YOOOOOOOOOOOOOOOOOOOOOO" textFill="WHITE" textOverrun="CLIP">
          <font>
             <Font size="7.0" />
          </font></Label>
