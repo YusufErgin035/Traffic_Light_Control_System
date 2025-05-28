@@ -26,10 +26,6 @@ public class Edge {
         return deltaX > deltaY ? "x" : "y";
     }
 
-    public int getVehicleCount() {
-        return vehicleCount;
-    }
-
     public void incrementVehicle() {
         System.out.println("Vehicle arttırma:"+vehicleCount+"->");
         vehicleCount++;

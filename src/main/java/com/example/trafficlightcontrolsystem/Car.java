@@ -15,7 +15,6 @@ public class Car {
     private double currentAngle = 0; // Aracın mevcut açısı (derece)
     private boolean isWaiting=false;
     private List<PathTransition> activePathTransitions = new ArrayList<>();
-    private List<RotateTransition> activeRotateTransitions = new ArrayList<>();
 
     // Bekleme durumunu kontrol eden getter ve setter
     public boolean isWaiting() {return isWaiting;}
@@ -42,20 +41,6 @@ public class Car {
 
     public Rectangle getShape() {
         return shape;
-    }
-
-    private void startMovement(Edge edge) {
-        Line line = new Line(edge.fromX, edge.fromY, edge.toX, edge.toY);
-
-        PathTransition transition = new PathTransition();
-        transition.setDuration(Duration.seconds(edge.roadTime));
-        transition.setNode(shape);
-        transition.setPath(line);
-        transition.setCycleCount(1);
-        transition.setAutoReverse(false);
-
-        activePathTransitions.add(transition);
-        transition.play();
     }
 
     public void arcTurn(boolean clockwise) {

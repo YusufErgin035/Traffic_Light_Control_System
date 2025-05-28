@@ -42,7 +42,7 @@ public class TrafficLightSystem {
     public void startTrafficControl() {
         // Başlangıçta tüm ışıkları kırmızı yap
         setAllLightsRed();
-        // 4 saniye bekle, sonra trafik kontrolünü başlat
+        // 3 saniye bekle, sonra trafik kontrolünü başlat
         Timeline initialDelay = new Timeline(
                 new KeyFrame(Duration.seconds(3), e -> {
                     startTrafficCycle();
@@ -62,8 +62,6 @@ public class TrafficLightSystem {
     }
 
     private void controlTrafficLights() {
-        forceCleanupGraph();
-
         setAllLightsRed();
 
         System.out.println("\n=== ARAÇ DURUMU ===");
@@ -87,18 +85,6 @@ public class TrafficLightSystem {
             int busiestDirection = findBusiestDirectionAtIntersection(intersection);
             if (busiestDirection != -1) {
                 setLightGreen(intersection, busiestDirection);
-            }
-        }
-    }
-
-    private void forceCleanupGraph() {
-        for(int i = 0; i < 12; i++) {
-            for(int j = 0; j < 12; j++) {
-                Edge edge = graph.getEdge(i, j);
-                if(edge != null && edge.vehicleCount > 3) { // 3'ten fazla araç varsa zorla sıfırla
-                    System.out.println("ZORLA TEMİZLEME: Edge " + i + "->" + j + " (" + edge.vehicleCount + " araç)");
-                    edge.vehicleCount = 0;
-                }
             }
         }
     }
@@ -130,7 +116,7 @@ public class TrafficLightSystem {
         // En az 1 araç varsa o yönü seç, yoksa -1 döndür
         int result = maxTraffic > 0 ? busiestDirection : -1;
 
-        // BURAYI EKLE:
+        // Eğer hiçbir yön seçilmediyse, rastgele bir yön seç
         if (result == -1) {
             result = random.nextInt(4); // 0-3 arası rastgele
         }
